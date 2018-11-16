@@ -1,37 +1,83 @@
 <template>
-  <div id="app">
-    <!--<div id="nav">-->
-      <!--<router-link to="/">Home</router-link>-->
-    <!--</div>-->
-    <el-container>
-      <!--侧边栏-->
-      <el-aside width="200px" v-show="$route.path !== '/'">
-        <asideTag></asideTag>
-      </el-aside>
-      <el-container>
-        <!--头部-->
-        <el-header  v-show="$route.path !== '/'">
-          <headerTag></headerTag>
-        </el-header>
-        <!--内容-->
-        <el-main :class="{'is-login': $route.path === '/'}">
-          <router-view/>
-        </el-main>
-      </el-container>
-    </el-container>
+    <div id="app">
+    <mt-header fixed title="欧洲服装贸易管理系统" class="head"></mt-header>
+
+    <div v-show="$route.path === '/'">
+      <router-view/>
+    </div>
+    <div  v-if="$route.path !== '/'">
+      
+    <mt-tab-container v-model="selected">
+
+      <mt-tab-container-item id="goods" v-show="$route.path === '/Goods'">
+        <router-view/>
+      </mt-tab-container-item>
+        
+      <mt-tab-container-item id="warehouse" v-show="$route.path === '/Warehouse'">
+        <router-view/>
+      </mt-tab-container-item>
+
+      <mt-tab-container-item id="finance" v-show="$route.path === '/Finance'">
+        <router-view/>
+      </mt-tab-container-item>
+
+      <mt-tab-container-item id="my" v-show="$route.path === '/My'">
+        <router-view/>
+      </mt-tab-container-item>
+
+    </mt-tab-container>
+
+
+
+    <mt-tabbar v-model="selected" fixed>
+     <mt-tab-item id="goods">
+       <img slot="icon" src="@/assets/goods.png">
+       销售
+     </mt-tab-item>
+     <mt-tab-item id="warehouse">
+       <img slot="icon" src="@/assets/warehouse.png">
+       仓储
+     </mt-tab-item>
+     <mt-tab-item id="finance">
+       <img slot="icon" src="@/assets/finance.png">
+       财务
+     </mt-tab-item>
+     <mt-tab-item id="my">
+       <img slot="icon" src="@/assets/my.png">
+       我的
+     </mt-tab-item>
+    </mt-tabbar>
+
+    </div>
+
   </div>
 </template>
 
 <script>
-  import asideTag from '@/components/aside'
-  import headerTag from '@/components/header'
+  // eslint-disable-next-line
+  // @ is an alias to /src
+  /* eslint-disable */
     export default {
         components: {
-            asideTag,
-            headerTag
         },
         data: function () {
-            return {}
+            return {
+              selected: ''
+            }
+        },
+        watch: {
+          selected: function() {
+            if(this.selected == 'goods') {
+              this.$router.push('/Goods');
+            }else if(this.selected == 'warehouse') {
+              this.$router.push('/Warehouse');
+            }else if(this.selected == 'finance') {
+              this.$router.push('/Finance');
+            }else if(this.selected == 'my') {
+              this.$router.push('/My');
+            }
+          }
+          
         },
         methods: {},
         created() {
@@ -40,71 +86,25 @@
         }
     }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
   @import '~@/styles/themes.scss';
-  body, html{
-    height: 100%;
-    margin: 0;
-    padding: 0;
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
   }
-#app {
-  height: 100%;
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-.el-container{
-  height: 100%;
-}
-.el-header, .el-footer {
-  background-color: $themse-BgHead;
-  color: #333;
-  text-align: center;
-  line-height: 60px;
-}
-
-.el-aside {
-  background-color: $themes-BgColor;
-  color: #333;
-  text-align: center;
-}
-
-.el-main {
-  background-color: #E9EEF3;
-  color: #333;
-  text-align: center;
-  height: 100%;
-  min-width: 1000px;
-  min-height: 500px;
-}
-  .is-login{
-    min-width: 1200px;
-    padding: 0 !important;
+  body{
+    background: #DCDCDC;
   }
-
-  /*弹出框*/
-  .el-dialog{
-    border-radius: 4px !important;
-  }
-  .el-dialog__header{
-    padding: 0 !important;
-  }
-  .el-dialog__body{
-    padding: 20px !important;
-    text-align: left;
+  .head {
+    width: 100%;
+    height: 60px;
+    background-color: #00b9f1;
+    font-size: 18px;
+    text-align: center;
+    line-height: 40px;
   }
 </style>
