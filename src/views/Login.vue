@@ -1,5 +1,5 @@
 <template>
-    
+    <button @click="login">hhhhh</button>
 </template>
 
 <script>
@@ -19,21 +19,19 @@
         },
         methods: {
             // 登录
-            // login() {
-            //     this.$req.post('', {
-            //         account: this.account,
-            //         password: this.password
-            //     })
-            //         .then(res => {
-            //             // console.log(res);
-            //             if (res.error_code === 102) {
-            //                 let token = res.data.token;
-            //                 sessionStorage.setItem('x-token', token);
-            //                 this.showChoose = true;
-            //                 this.getList()
-            //             }
-            //         })
-            // },
+            login() {
+                //alert("rgvuyergfiyer");
+                this.$req.post('login')
+                    .then(res => {
+                        console.log(res);
+                        // if (res.error_code === 102) {
+                        //     let token = res.data.token;
+                        //     sessionStorage.setItem('x-token', token);
+                        //     this.showChoose = true;
+                        //     this.getList()
+                        // }
+                    })
+            },
         },
         created() {
         },
