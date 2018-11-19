@@ -12,8 +12,7 @@ import warehousein from '@/views/Warehouse/warehousein'
 //My
 import Finance from '@/views/Finance/Finance'
 //My
-import My from '@/views/My/My'
-
+import me from '@/views/My/me'
 Vue.use(Router);
 
 export default new Router({
