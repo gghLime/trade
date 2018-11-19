@@ -42,7 +42,7 @@
     import other from '@/assets/other.png'
     import tag from '@/assets/tag.png'
 
-    
+
     export default {
         name: '',
         components: {},
