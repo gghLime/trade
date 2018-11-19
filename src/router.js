@@ -12,7 +12,7 @@ import warehousein from '@/views/Warehouse/warehousein'
 //My
 import Finance from '@/views/Finance/Finance'
 //My
-import me from '@/views/My/me'
+import me from '@/views/me/me'
 Vue.use(Router);
 
 export default new Router({
@@ -49,9 +49,9 @@ export default new Router({
       component: Finance
     },
     {
-      path: '/My',
-      name: 'My',
-      component: My
+      path: '/me',
+      name: 'me',
+      component: me
     },
     {
       path: '/Detail',
