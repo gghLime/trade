@@ -1,15 +1,30 @@
 <template>
     <div id="app">
-    <mt-header fixed title="欧洲服装贸易管理系统" class="head"></mt-header>
+    <!-- <mt-header fixed title="欧洲服装贸易管理系统" class="head"></mt-header> -->
+    <mt-header fixed title="欧洲服装贸易管理系统" class="head">
+      <router-link to="/" slot="left">
+        <mt-button icon="back"></mt-button>
+      </router-link>
+      <mt-button @click="Shopping" slot="right">购物车</mt-button>
+    </mt-header>
+
 
     <div v-show="$route.path === '/'">
       <router-view/>
     </div>
     <div  v-if="$route.path !== '/'">
-      
+    
+    <div v-show="$route.path === '/Detail'">
+      <router-view/>
+    </div>
+
+    <div v-show="$route.path === '/warehousein'">
+      <router-view/>
+    </div>
+    
     <mt-tab-container v-model="selected">
 
-      <mt-tab-container-item id="goods" v-show="$route.path === '/Goods'">
+      <mt-tab-container-item id="sale" v-show="$route.path === '/Sale'">
         <router-view/>
       </mt-tab-container-item>
         
@@ -27,11 +42,9 @@
 
     </mt-tab-container>
 
-
-
-    <mt-tabbar v-model="selected" fixed>
-     <mt-tab-item id="goods">
-       <img slot="icon" src="@/assets/goods.png">
+    <mt-tabbar v-model="selected" fixed v-if="$route.path !== '/Detail'">
+     <mt-tab-item id="sale">
+       <img slot="icon" src="@/assets/sale.png">
        销售
      </mt-tab-item>
      <mt-tab-item id="warehouse">
@@ -50,6 +63,26 @@
 
     </div>
 
+
+    <mt-popup
+      v-model="popupVisible"
+      position="bottom"
+      popup-transition="popup-fade">
+      <div class="shooping_css">
+        <div class="kehu_detail">
+          <div class="name_tel"> 
+            <div>客户姓名:</div>
+            <div>电话:</div>
+          </div>
+          
+          <div>送货地址:</div>
+        </div>
+        <div class="buy_list">
+          
+        </div>
+      </div>
+    </mt-popup>
+
   </div>
 </template>
 
@@ -62,13 +95,14 @@
         },
         data: function () {
             return {
-              selected: ''
+              selected: '',
+              popupVisible: true
             }
         },
         watch: {
           selected: function() {
-            if(this.selected == 'goods') {
-              this.$router.push('/Goods');
+            if(this.selected == 'sale') {
+              this.$router.push('/Sale');
             }else if(this.selected == 'warehouse') {
               this.$router.push('/Warehouse');
             }else if(this.selected == 'finance') {
@@ -79,7 +113,11 @@
           }
           
         },
-        methods: {},
+        methods: {
+          Shopping: function() {
+            this.popupVisible = true;
+          }
+        },
         created() {
         },
         mounted() {
@@ -103,8 +141,26 @@
     width: 100%;
     height: 60px;
     background-color: #00b9f1;
-    font-size: 18px;
+    font-size: 15px;
     text-align: center;
     line-height: 40px;
+  }
+  .shopping {
+    border: red 1px solid;
+    height: 300px;
+    float: left;
+  }
+  .shooping_css {
+    width: 390px;
+    height: 500px;
+    border: red 1px solid;
+  }
+  .kehu_detail {
+    width: 100%;
+    height: 100px;
+    border: red solid 1px;
+  }
+  .name_tel {
+    display: flex;
   }
 </style>

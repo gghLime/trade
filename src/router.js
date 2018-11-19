@@ -3,13 +3,17 @@ import Router from 'vue-router'
 import Login from '@/views/Login.vue'
 
 //Goods
-import Goods from '@/views/Goods/Goods'
-//My
+import Sale from '@/views/Sale/Sale'
+//Detail
+import Detail from '@/views/Sale/Detail'
+//Warehouse
 import Warehouse from '@/views/Warehouse/Warehouse'
+import warehousein from '@/views/Warehouse/warehousein'
 //My
 import Finance from '@/views/Finance/Finance'
 //My
 import My from '@/views/My/My'
+
 Vue.use(Router);
 
 export default new Router({
@@ -26,14 +30,19 @@ export default new Router({
     },
 
     {
-      path: '/Goods',
-      name: 'Goods',
-      component: Goods
+      path: '/Sale',
+      name: 'Sale',
+      component: Sale
     },
     {
       path: '/Warehouse',
       name: 'Warehouse',
       component: Warehouse
+    },
+    {
+      path: '/warehousein',
+      name: 'warehousein',
+      component: warehousein
     },
     {
       path: '/Finance',
@@ -44,6 +53,11 @@ export default new Router({
       path: '/My',
       name: 'My',
       component: My
+    },
+    {
+      path: '/Detail',
+      name: 'Detail',
+      component: Detail
     }
     // {
     //   path: '/about',

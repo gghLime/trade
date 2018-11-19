@@ -35,7 +35,7 @@
     methods: {
     // 登录
             login() {
-                this.$router.push('/Goods');
+                this.$router.push('/Sale');
                 //alert("rgvuyergfiyer");
                 // this.$req.post('login')
                 //     .then(res => {
