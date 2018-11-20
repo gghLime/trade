@@ -36,7 +36,7 @@
         <router-view/>
       </mt-tab-container-item>
 
-      <mt-tab-container-item id="my" v-show="$route.path === '/My'">
+      <mt-tab-container-item id="me" v-show="$route.path === '/Me'">
         <router-view/>
       </mt-tab-container-item>
 
@@ -55,7 +55,7 @@
        <img slot="icon" src="@/assets/finance.png">
        财务
      </mt-tab-item>
-     <mt-tab-item id="my">
+     <mt-tab-item id="me">
        <img slot="icon" src="@/assets/my.png">
        我的
      </mt-tab-item>
@@ -96,7 +96,7 @@
         data: function () {
             return {
               selected: '',
-              popupVisible: true
+              popupVisible: false
             }
         },
         watch: {
@@ -107,8 +107,8 @@
               this.$router.push('/Warehouse');
             }else if(this.selected == 'finance') {
               this.$router.push('/Finance');
-            }else if(this.selected == 'my') {
-              this.$router.push('/My');
+            }else if(this.selected == 'me') {
+              this.$router.push('/Me');
             }
           }
           
