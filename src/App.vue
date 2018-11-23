@@ -5,7 +5,7 @@
       <router-link to="/" slot="left">
         <mt-button icon="back"></mt-button>
       </router-link>
-      <mt-button @click="Shopping" slot="right">购物车</mt-button>
+      <mt-button @click="Shopping" v-if=" $route.path === '/Sale' || $route.path === '/Detail'" slot="right">购物车</mt-button>
     </mt-header>
 
 
@@ -221,7 +221,6 @@
     line-height: 40px;
   }
   .shopping {
-    border: red 1px solid;
     height: 300px;
     float: left;
   }
@@ -229,12 +228,11 @@
     width: 320px;
     padding: 10px 300px;
     height: 500px;
-    border: red 1px solid;
   }
   .kehu_detail {
     width: calc(100% - 20px);
     height: 100px;
-    border: red solid 1px;
+    border: black solid 1px;
     padding: 10px;
   }
   .name_tel {
@@ -262,19 +260,18 @@
     padding: 5px;
   }
   .buy_list {
-    border: red solid 1px;
     height: 380px;
     overflow: auto;
   }
   .buy_list_pic {
     height: 70px;
     width: 70px;
-    border: red 1px solid;
+    border: black 1px solid;
   }
   .buy_list_detail {
     height: 70px;
     width: 180px;
-    border: red solid 1px;
+    border: black solid 1px;
   }
   .buy_list_item {
     display: flex;
@@ -282,12 +279,13 @@
   .buy_list_delete {
     height: 70px;
     width: 66px;
-    border: red 1px solid;
+    border: black 1px solid;
   }
   .buy_list_detail_font {
     display: flex;
   }
   .number {
+    width: 50px;
     margin-top: 10px;
   }
   .del_img {
