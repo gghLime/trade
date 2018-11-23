@@ -4,6 +4,9 @@ import Login from '@/views/Login.vue'
 
 //Goods
 import Sale from '@/views/Sale/Sale'
+// 结算与预定
+import setAndRes from '@/views/Sale/setAndRes'
+
 //Detail
 import Detail from '@/views/Sale/Detail'
 //Warehouse
@@ -57,14 +60,11 @@ export default new Router({
       path: '/Detail',
       name: 'Detail',
       component: Detail
+    },
+    {
+      path: '/setAndRes',
+      name: 'setAndRes',
+      component: setAndRes
     }
-    // {
-    //   path: '/about',
-    //   name: 'about',
-    //   // route level code-splitting
-    //   // this generates a separate chunk (about.[hash].js) for this route
-    //   // which is lazy-loaded when the route is visited.
-    //   component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    // }
   ]
 })
