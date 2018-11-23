@@ -69,16 +69,55 @@
       position="bottom"
       popup-transition="popup-fade">
       <div class="shooping_css">
+      <!-- 客户信息 -->
         <div class="kehu_detail">
+          <!-- 姓名和电话 -->
           <div class="name_tel"> 
             <div>客户姓名:</div>
-            <div>电话:</div>
+
+            <select class="user_select">
+              <option value ="volvo">Volvo</option>
+              <option value ="saab">Saab</option>
+              <option value="opel">Opel</option>
+              <option value="audi">Audi</option>
+            </select> 
+
+            <div class="phonefont">电话:</div>
+            <input type="text" name="phone" class="phonestyle" placeholder="请输入电话">
+          </div>
+          <div class="address">
+            <div>送货地址:</div>
+            <div class="address_textarea" contenteditable="true">
+              
+            </div>
           </div>
           
-          <div>送货地址:</div>
         </div>
+
         <div class="buy_list">
-          
+          <div v-for="(item, index) in buy_list_data" :key="index" class="buy_list_item">
+            <div class="buy_list_pic">
+              <img :src="mode" class="show_img" />
+            </div>
+            <div class="buy_list_detail">
+              <div class="buy_list_detail_font">
+                型号:{{item.mode}}
+                子型号:{{item.child}}
+              </div>
+              <div class="buy_list_detail_font">
+                颜色: {{item.color}}
+                每箱件数:{{item.number}}
+              </div>
+              <div class="buy_list_detail_font">
+                尺寸:{{item.size}}
+                销售模式:{{item.sale_way}}
+              </div>
+            </div>
+            <div class="buy_list_delete">
+              <input type="number" class="number" name="number">
+              <img :src="del_img" @click="del(index)" class="del_img"/>
+            </div>
+          </div>
         </div>
       </div>
     </mt-popup>
@@ -90,13 +129,46 @@
   // eslint-disable-next-line
   // @ is an alias to /src
   /* eslint-disable */
+  import mode from '@/assets/mode.jpg'
+  import del_img from '@/assets/close.png'
+
     export default {
         components: {
         },
         data: function () {
             return {
+              del_img: del_img,
+              mode: mode,
+              number: '',
               selected: '',
-              popupVisible: false
+              popupVisible: false,
+              buy_list_data: [
+                {
+                  picurl: mode,
+                  mode: 8333,
+                  child: "I",
+                  color: "红色",
+                  number: 75,
+                  size: "XL",
+                  sale_way: "整箱"
+                },{
+                  picurl: mode,
+                  mode: 8333,
+                  child: "I",
+                  color: "红色",
+                  number: 75,
+                  size: "XL",
+                  sale_way: "整箱"
+                },{
+                  picurl: mode,
+                  mode: 8333,
+                  child: "I",
+                  color: "红色",
+                  number: 75,
+                  size: "XL",
+                  sale_way: "整箱"
+                }
+              ]
             }
         },
         watch: {
@@ -114,7 +186,10 @@
           
         },
         methods: {
-          Shopping: function() {
+        del: function(index) {
+          alert(index);
+        },
+        Shopping: function() {
             this.popupVisible = true;
           }
         },
@@ -151,16 +226,75 @@
     float: left;
   }
   .shooping_css {
-    width: 390px;
+    width: 320px;
+    padding: 10px 300px;
     height: 500px;
     border: red 1px solid;
   }
   .kehu_detail {
-    width: 100%;
+    width: calc(100% - 20px);
     height: 100px;
     border: red solid 1px;
+    padding: 10px;
   }
   .name_tel {
     display: flex;
+    white-space: nowrap;
+  }
+  .user_select {
+    width: 20%;
+  }
+  .phonestyle {
+    width: 40%;
+  }
+  .phonefont {
+    margin-left: 5px;
+  }
+  .address {
+    display: flex;
+    margin-top: 10px;
+  }
+  .address_textarea {
+    border: #2c3e50 solid 1px;
+    width: calc(100% - 87px);
+    height: 60px;
+    text-align: left;
+    padding: 5px;
+  }
+  .buy_list {
+    border: red solid 1px;
+    height: 380px;
+    overflow: auto;
+  }
+  .buy_list_pic {
+    height: 70px;
+    width: 70px;
+    border: red 1px solid;
+  }
+  .buy_list_detail {
+    height: 70px;
+    width: 180px;
+    border: red solid 1px;
+  }
+  .buy_list_item {
+    display: flex;
+  }
+  .buy_list_delete {
+    height: 70px;
+    width: 66px;
+    border: red 1px solid;
+  }
+  .buy_list_detail_font {
+    display: flex;
+  }
+  .number {
+    margin-top: 10px;
+  }
+  .del_img {
+    margin-top: 10px;
+  }
+  .show_img {
+    width: 50px;
+    height: 70px;
   }
 </style>

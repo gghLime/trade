@@ -38,38 +38,8 @@
                     </table>
 
                   </mt-tab-container-item>
-                  <mt-tab-container-item id="2" style="background-color: white">
-                    <div>
-                        <div class="TheSelect">
-                            <select>
-                                <option v-for="(select, index) in selects" :key="index">{{select.selecting}}</option>
-                            </select>
-                        </div>
-                        <div class="TheSelectButton">
-                            <mt-button type="default">确定</mt-button>
-                        </div>
-                    </div>
-                    <div class="CapitalFlow">
-                        <table border="1" cellspacing="0">
-                            <tr>
-                                <th>日期</th>
-                                <th>客户</th>
-                                <th>金额</th>
-                                <th>备注</th>
-                            </tr>
-                            <tr v-for= "(capotal, index) in capotals" :key="index">
-                                <td>{{capotal.mydate}}</td>
-                                <td>{{capotal.myname}}</td>
-                                <td>{{capotal.mymoney}}</td>
-                                <td>{{capotal.content}}</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="CapitalFlowWhole">
-                        <span>合计: {{allmoney}}</span>
-                        <span>到账: {{arrmoney}}</span>
-                        <span>应付: {{facmoney}}</span>
-                    </div>
+                  <mt-tab-container-item id="2">
+                    
                   </mt-tab-container-item >
                   <mt-tab-container-item id="3" style="background-color: white">
                     <div class="SalesTrend">
@@ -98,7 +68,7 @@
                         <mt-button type="default">显示趋势</mt-button>
                     </div>
                     <div class="SalesTrendInformation">
-
+                       
                     </div>
                   </mt-tab-container-item>
                 </mt-tab-container>
@@ -115,6 +85,10 @@
         data() {
             return {
                 selected: '1',
+                theMaxHeight: '',
+                theFirstHeight: '',
+                theSecondHeight: '',
+                theThirdHeight: '',
                 items: [{
                     id: '20180101SSDASD',
                     name: 'Vittotio',
@@ -188,101 +162,11 @@
                     ModelAndName: '8333/Vittorio',
                     InforAndPhone: '75(件/箱)/39******',
                     SelectState: 'ok',
-                }],
-                selects:[{
-                    selecting: '所有人',
-                },{
-                    selecting: 'Vittorio',
-                },{
-                    selecting: '测试人员',
-                },{
-                    selecting: 'Elsa',
-                },{
-                    selecting: 'Marrio',
-                }],
-                capotals:[{
-                    mydate: '2018.03.09',
-                    myname: 'Vittorio',
-                    mymoney: '-8000',
-                    content: '到账',
-                },{
-                    mydate: '2018.03.09',
-                    myname: 'Vittorio',
-                    mymoney: '-8000',
-                    content: '到账',
-                },{
-                    mydate: '2018.03.09',
-                    myname: 'Vittorio',
-                    mymoney: '-8000',
-                    content: '到账',
-                },{
-                    mydate: '2018.03.09',
-                    myname: 'Vittorio',
-                    mymoney: '-8000',
-                    content: '到账',
-                },{
-                    mydate: '2018.03.09',
-                    myname: 'Vittorio',
-                    mymoney: '-8000',
-                    content: '到账',
-                },{
-                    mydate: '2018.03.09',
-                    myname: 'Vittorio',
-                    mymoney: '-8000',
-                    content: '到账',
-                },{
-                    mydate: '2018.03.09',
-                    myname: 'Vittorio',
-                    mymoney: '-8000',
-                    content: '到账',
-                },{
-                    mydate: '2018.03.09',
-                    myname: 'Vittorio',
-                    mymoney: '-8000',
-                    content: '到账',
-                },{
-                    mydate: '2018.03.09',
-                    myname: 'Vittorio',
-                    mymoney: '2600',
-                    content: '订单***',
-                },{
-                    mydate: '2018.03.09',
-                    myname: 'Vittorio',
-                    mymoney: '2600',
-                    content: '订单***',
-                },{
-                    mydate: '2018.03.09',
-                    myname: 'Vittorio',
-                    mymoney: '2600',
-                    content: '订单***',
-                },{
-                    mydate: '2018.03.09',
-                    myname: 'Vittorio',
-                    mymoney: '2600',
-                    content: '订单***',
-                },{
-                    mydate: '2018.03.09',
-                    myname: 'Vittorio',
-                    mymoney: '2600',
-                    content: '订单***',
-                },{
-                    mydate: '2018.03.09',
-                    myname: 'Vittorio',
-                    mymoney: '2600',
-                    content: '订单***',
-                },{
-                    mydate: '2018.03.09',
-                    myname: 'Vittorio',
-                    mymoney: '2600',
-                    content: '订单***',
-                }],
-                allmoney: '-2000',
-                arrmoney: '12700',
-                facmoney: '-14700'
+                }]
             };
         },
         methods:{
-
+            
         },
     }
 </script>
@@ -297,8 +181,8 @@
 
 .TheFinanceID{
     margin: 0px;
-    width: 39%;
-    background-color: white;
+    width: 39%; 
+    background-color: white; 
     float: left;
     white-space:normal;
     word-break:break-all;
@@ -308,52 +192,18 @@
     float: left;
 }
 .TheShopImformation{
-    width: 39.5%;
-    background-color: white;
+    width: 39.5%; 
+    background-color: white; 
     float: left;
 }
 .TheNumber{
-    width: 19%;
-    background-color: white;
+    width: 19%; 
+    background-color: white; 
     float: left;
 }
 .SalesTrend{
     width: 100%;
     background-color: white;
-}
-.TheSelect{
-    width: 60%;
-    float: left;
-    padding: 10px 0px 20px 0px;
-}
-.TheSelect select{
-    width: 150px;
-    height: 40px;
-    font-size: 15px;
-    border: none;
-    outline: none;
-    line-height: 40px;
-}
-.TheSelectButton{
-    width: 40%;
-    background-color: white;
-    float: left;
-    padding: 10px 0px 20px 0px;
-}
-.CapitalFlow{
-    overflow: scroll;
-    height: 400px;
-    width: calc(100% - 7px);
-    border: 1px solid black;
-}
-.CapitalFlow table{
-    width: 100%;
-    font-size: 20px;
-}
-.CapitalFlowWhole{
-    width: calc(100% - 5px);
-    background-color:#C0C0C0;
-    font-size: 20px;
 }
 .SetSalesTrend{
     width: 50%;

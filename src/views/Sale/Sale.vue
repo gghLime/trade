@@ -51,6 +51,92 @@
 
       <mt-tab-container-item id="2">
         <!-- <mt-cell v-for="n in 4" :title="'退货 ' + n" /> -->
+        <div class="query_font">查询订单</div>
+        <div class="query">
+          <input type="text" name="nameinput" class="nameinput" placeholder="姓名/电话">
+          <div class="query_time">
+
+            <mt-field class="border_no" placeholder="" type="date" v-model="begtime"></mt-field>
+            <div>至</div>
+            <mt-field class="border_no" placeholder="" type="date" v-model="endtime"></mt-field>
+
+          </div>
+
+          <mt-button class="query_btu" @click="query_btu" type="primary">查询</mt-button>
+
+        </div>
+        <div class="boxlist">
+          <div class="full_box">整箱</div>
+        
+          <table class="tablestyle">
+            <tr class="table_head">
+              <th>型号</th>
+              <th>颜色</th>
+              <th>数量</th>
+              <th>件/箱</th>
+              <th>价格</th>
+            </tr>
+            <tr v-for="(item,index) in full_box_list" :key="index">
+              <td>{{item.model}}</td>
+              <td>{{item.color}}</td>
+              <td>{{item.number}}</td>
+              <td>{{item.size}}</td>
+              <td>{{item.moner}}</td>
+            </tr>
+          </table>
+
+
+          <div class="full_box">尾箱</div>
+        
+          <table class="tablestyle">
+            <tr class="table_head">
+              <th>型号</th>
+              <th>颜色</th>
+              <th>数量</th>
+              <th>件/箱</th>
+              <th>价格</th>
+            </tr>
+            <tr v-for="(item,index) in leave_box_list" :key="index">
+              <td>{{item.model}}</td>
+              <td>{{item.color}}</td>
+              <td>{{item.number}}</td>
+              <td>{{item.size}}</td>
+              <td>{{item.moner}}</td>
+            </tr>
+          </table>
+
+        </div>
+
+        <mt-button class="query_btu" type="primary">ok</mt-button>
+
+        <mt-popup
+        v-model="asideView"
+        position="bottom"
+        popup-transition="popup-fade">
+
+        <div class="query_result">
+          <!-- data source ： querydata-->
+          <table class="tablestyle">
+            <tr class="table_head">
+              <th>订单编号</th>
+              <th>型号</th>
+              <th>单价</th>
+              <th>数量</th>
+              <th>日期</th>
+            </tr>
+            <tr v-for="(item,index) in querydata" :key="index">
+              <td>{{item.id}}</td>
+              <td>{{item.model}}</td>
+              <td>{{item.money}}</td>
+              <td>{{item.number}}</td>
+              <td>{{item.date}}</td>
+            </tr>
+          </table>
+          <mt-button class="query_btu" @click="close_query_result" type="primary">确定</mt-button>
+        </div>
+
+        </mt-popup>
+
       </mt-tab-container-item>
 
       <mt-tab-container-item id="3">
@@ -75,6 +161,9 @@
     export default {
       data(){
         return{
+          asideView: false,
+          begtime: '',
+          endtime: '',
           selected: '1',
           browse_img: browse_img,
           price_img: price_img,
@@ -145,11 +234,153 @@
                 price: '7.5',
                 number: '655'
               },
+            ],
+            full_box_list: [
+              {
+                model: '8333',
+                color: 'Blue',
+                number: 2,
+                size: 75,
+                moner: 300
+              },
+              {
+                model: '8333',
+                color: 'Blue',
+                number: 2,
+                size: 75,
+                moner: 300
+              },{
+                model: '8333',
+                color: 'Blue',
+                number: 2,
+                size: 75,
+                moner: 300
+              },
+              {
+                model: '8333',
+                color: 'Blue',
+                number: 2,
+                size: 75,
+                moner: 300
+              },{
+                model: '8333',
+                color: 'Blue',
+                number: 2,
+                size: 75,
+                moner: 300
+              },
+              {
+                model: '8333',
+                color: 'Blue',
+                number: 2,
+                size: 75,
+                moner: 300
+              },{
+                model: '8333',
+                color: 'Blue',
+                number: 2,
+                size: 75,
+                moner: 300
+              },
+              {
+                model: '8333',
+                color: 'Blue',
+                number: 2,
+                size: 75,
+                moner: 300
+              },{
+                model: '8333',
+                color: 'Blue',
+                number: 2,
+                size: 75,
+                moner: 300
+              },
+              {
+                model: '8333',
+                color: 'Blue',
+                number: 2,
+                size: 75,
+                moner: 300
+              },{
+                model: '8333',
+                color: 'Blue',
+                number: 2,
+                size: 75,
+                moner: 300
+              },
+              {
+                model: '8333',
+                color: 'Blue',
+                number: 2,
+                size: 75,
+                moner: 300
+              },
+            ],
+            leave_box_list: [
+              {
+                model: '8333',
+                color: 'Blue',
+                number: 2,
+                size: 75,
+                moner: 300
+              },
+              {
+                model: '8333',
+                color: 'Blue',
+                number: 2,
+                size: 75,
+                moner: 300
+              },
+            ],
+            querydata: [
+              {
+                id: 'xxxxx',
+                model: 'xxx',
+                money:  'xx',
+                number: 23,
+                date: '01/10/18'
+              },{
+                id: 'xxxxx',
+                model: 'xxx',
+                money:  'xx',
+                number: 23,
+                date: '01/10/18'
+              },{
+                id: 'xxxxx',
+                model: 'xxx',
+                money:  'xx',
+                number: 23,
+                date: '01/10/18'
+              },{
+                id: 'xxxxx',
+                model: 'xxx',
+                money:  'xx',
+                number: 23,
+                date: '01/10/18'
+              },{
+                id: 'xxxxx',
+                model: 'xxx',
+                money:  'xx',
+                number: 23,
+                date: '01/10/18'
+              },{
+                id: 'xxxxx',
+                model: 'xxx',
+                money:  'xx',
+                number: 23,
+                date: '01/10/18'
+              },
             ]
 
         }
       },
       methods:{
+        query_btu: function() {
+          this.asideView = true;
+        },
+        close_query_result: function() {
+          this.asideView = false;
+        },
         detail: function(index) {
           this.$router.push({name: 'Detail', params:{model: index}});
         }
@@ -201,5 +432,60 @@
 .number_img {
   width: 30px;
   height: 30px;
+}
+.query_font {
+  position: absolute;
+  font-size: 15px;
+  background: white;
+  margin-left: 10%;
+}
+.query {
+  border: black 1px solid;
+  height: 200px;
+  margin: 10px 15px 0px 15px;
+}
+.nameinput {
+  width: calc(100% - 40px);
+  margin: 30px 10px 0px 10px;
+  height: 30px;
+}
+.query_time {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+.border_no {
+  border: none !important;
+}
+.query_btu {
+  width: 100%;
+  border-radius: 3em;
+  width: 80%;
+  margin-top: 15px;
+}
+.boxlist {
+  overflow: auto;
+  height: calc(100% - 500px);
+  border: 1px black solid;
+}
+.full_box {
+  padding: 10px;
+}
+.tablestyle {
+  width: calc(100% - 40px);
+  margin: 0px 20px;
+  border: black 1px solid;
+  margin-bottom: 20px;
+}
+.table_head {
+  background-color: rgb(153, 153, 153);
+}
+td {
+  border: solid black 1px;
+}
+.query_result {
+  width: 390px;
+  height: 500px;
+  padding: 40px;
 }
 </style>
