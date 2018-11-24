@@ -51,6 +51,17 @@
         toggle:function(index){
           // manage.show = !manage.show;
           this.ind = index;
+          if(this.ind == 0){
+            this.$router.push('/ClientList');
+          }else if(this.ind == 1){
+            this.$router.push('/StaffList');
+          }else if(this.ind == 2){
+            this.$router.push('/SetUp');
+          }else if(this.ind == 3){
+            this.$router.push('/Maintenance');
+          }else if(this.ind == 4){
+            this.$router.push('/Software');
+          }
         }
       }
     }

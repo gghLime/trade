@@ -4,6 +4,7 @@ const service = axios.create({
 });
 // 请求拦截
 service.interceptors.request.use(config => {
+	//要加一个cs + " "
     // config.headers['common']['Content-Type'] = 'application/x-www-form-urlencoded';
     // config.headers['x-token'] = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9leGFtcGxlLm9yZyIsImF1ZCI6Imh0dHA6XC9cL2V4YW1wbGUuY29tIiwiaWF0IjoxNTQxNDEyNDQ4LCJuYmYiOjE5MDE0MTI0NDgsInVpZCI6MSwiYXV0aGlkIjoiNzEifQ.V2qpfVcSPMQjA68urTH6q9SaFSrhngGHTePou1p8BYU';
     // let token = sessionStorage.getItem('x-token');

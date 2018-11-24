@@ -17,20 +17,39 @@
       <div class="font">价格：7.5€</div>
       <div class="buy_box">
         <div class="font number_top">购买箱数：<input type="number" class="number" name="points"/></div>
-        <div class="font">+购买尾箱</div>
+        <div class="font" @click="buy_leave">+购买尾箱</div>
       </div>
       
-      <div class="buy_box_table">
-        <div class="table_left">购买尾箱数</div>
-        <div class="table_right">每件箱数</div>
+      <div v-if="leave_box_Vis == true">
+
+        <div class="buy_box_table">
+          <div class="table_left">购买尾箱数</div>
+          <div class="table_right">每件箱数</div>
+        </div>
+        <div class="table_line" v-for="(item,index) in leave_box_buy_list" :key="index">
+          <div class="table_line_left">{{item.buy_number}}</div>
+          <div class="table_line_right">{{item.box_number}}</div>
+        </div>
+
       </div>
-      <div class="table_line" v-for="(item,index) in buy_box" :key="index">
-        <div class="table_line_left">{{item.buy_number}}</div>
-        <div class="table_line_right">{{item.box_number}}</div>
+      <div v-else>
+        <div class="buy_box_table">
+          <div class="table_left">Ps/Box</div>
+          <div class="table_left">Inventory</div>
+          <div class="table_left">Quantities</div>
+          <div class="table_right">Operation</div>
+        </div>
+        <div class="table_line" v-for="(item,index) in leave_box_list" :key="index">
+          <div class="table_line_left">{{item.box}}</div>
+          <div class="table_line_left">{{item.inventory}}</div>
+          <div class="table_line_left">{{item.quantities}}</div>
+          <div class="table_line_right">{{item.operation}}</div>
+        </div>
       </div>
+      
     </div>
 
-    <mt-button size="large" class="buy_button">添加到购物车</mt-button>
+    <mt-button size="large" @click="add_to_buy_list_data" class="buy_button">添加到购物车</mt-button>
   </div>
 </template>
 
@@ -52,25 +71,53 @@
           price_img: price_img,
           number_img: number_img,
           mode_img: mode_img,
+          // 尾箱已购买或待购买显示 true 已购买 false 待购买
+          leave_box_Vis: true,
           model: this.$route.params.model,
           data: {
             number: 655,
             much: 75,
             child: 13
           },
-          buy_box: [
-          {
-            buy_number: 1,
-            box_number: 32
-          },{
-            buy_number: 2,
-            box_number: 48
-          },
-          ]
+          // 已购买的尾箱数量
+          leave_box_buy_list: [
+            {
+              buy_number: 1,
+              box_number: 32
+            },{
+              buy_number: 2,
+              box_number: 48
+            },
+          ],
+          // 待购买尾箱数量列表
+          leave_box_list: [
+            {
+              box: 34,
+              inventory: 2,
+              quantities: 1,
+              operation: 0
+            },{
+              box: 34,
+              inventory: 2,
+              quantities: 1,
+              operation: 0
+            },
+          ],
 
         }
       },
       methods:{
+        buy_leave: function() {
+          if(this.leave_box_Vis) {
+            this.leave_box_Vis = false;
+          }else {
+            this.leave_box_Vis = true;
+          }
+        },
+        add_to_buy_list_data: function() {
+          // leave_box_buy_list
+          //console.log(JSON.parse(sessionStorage.getItem('dataBuy')));
+        }
       },
 
     }

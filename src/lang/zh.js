@@ -51,5 +51,10 @@ export default{
         customer_tele:'客户电话',
         customer_tele_edit:'请输入客户电话',
         customer_address:'客户地址'
+    },
+
+    // Sale页面
+    Sale: {
+        commodity: '商品',
     }
 }

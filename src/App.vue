@@ -2,11 +2,28 @@
     <div id="app">
     <!-- <mt-header fixed title="欧洲服装贸易管理系统" class="head"></mt-header> -->
     <mt-header fixed title="欧洲服装贸易管理系统" class="head">
-      <router-link to="/" slot="left">
+      <router-link :to="preroute" slot="left">
         <mt-button icon="back"></mt-button>
       </router-link>
       <mt-button @click="Shopping" v-if=" $route.path === '/Sale' || $route.path === '/Detail'" slot="right">购物车</mt-button>
     </mt-header>
+
+    <div v-show="$route.path === '/ClientList'">
+      <router-view/>
+    </div>
+    <div v-show="$route.path === '/StaffList'">
+      <router-view/>
+    </div>
+    <div v-show="$route.path === '/SetUp'">
+      <router-view/>
+    </div>
+    <div v-show="$route.path === '/Maintenance'">
+      <router-view/>
+    </div>
+    <div v-show="$route.path === '/Software'">
+      <router-view/>
+    </div>
+
 
     <!-- 登录 -->
     <div v-if="$route.path === '/'">
@@ -148,13 +165,13 @@
         },
         data: function () {
             return {
+              preroute: '/',//上一级路由地址
               del_img: del_img,
               mode: mode,
               number: '',
               selected: '',
               popupVisible: false,
-              buy_list_data: [
-                {
+              buy_list_data: [{
                   picurl: mode,
                   mode: 8333,
                   child: "I",
@@ -178,8 +195,7 @@
                   number: 75,
                   size: "XL",
                   sale_way: "整箱"
-                }
-              ]
+                }]
             }
         },
         watch: {
@@ -220,6 +236,7 @@
         created() {
         },
         mounted() {
+          
         }
     }
 </script>

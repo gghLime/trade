@@ -1,7 +1,7 @@
 <template>
   <div>
     <mt-navbar v-model="selected">
-      <mt-tab-item id="1">商品</mt-tab-item>
+      <mt-tab-item id="1">{{ $t("Sale.commodity") }}</mt-tab-item>
       <mt-tab-item id="2">退货</mt-tab-item>
       <mt-tab-item id="3">调整</mt-tab-item>
     </mt-navbar>
@@ -169,6 +169,7 @@
           price_img: price_img,
           number_img: number_img,
           mode_img: mode_img,
+          // 销售左边的数据
           list_left_data: [
               {
                 img_url: 'https://www.baidu.com/img/baidu_jgylogo3.gif',
@@ -202,6 +203,7 @@
                 number: '655'
               },
             ],
+            // 销售右边数据
             list_right_data: [
               {
                 img_url: 'https://www.baidu.com/img/baidu_jgylogo3.gif',
@@ -235,6 +237,7 @@
                 number: '655'
               },
             ],
+            // 整箱数据
             full_box_list: [
               {
                 model: '8333',
@@ -316,6 +319,7 @@
                 moner: 300
               },
             ],
+            // 尾箱数据
             leave_box_list: [
               {
                 model: '8333',

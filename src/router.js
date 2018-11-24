@@ -16,6 +16,11 @@ import warehousein from '@/views/Warehouse/warehousein'
 import Finance from '@/views/Finance/Finance'
 //My
 import Me from '@/views/Me/Me'
+
+import ClientList from '@/views/Me/ClientList'
+import Maintenance from '@/views/Me/Maintenance'
+import StaffList from '@/views/Me/StaffList'
+
 Vue.use(Router);
 
 export default new Router({
@@ -65,6 +70,19 @@ export default new Router({
       path: '/setAndRes',
       name: 'setAndRes',
       component: setAndRes
+    },{
+      path: '/ClientList',
+      name: 'ClientList',
+      component: ClientList
+    },{
+      path: '/Maintenance',
+      name: 'Maintenance',
+      component: Maintenance
+    },{
+      path: '/StaffList',
+      name: 'StaffList',
+      component: StaffList
     }
+
   ]
 })
