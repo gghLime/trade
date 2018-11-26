@@ -1,30 +1,30 @@
 <template>
   <div>
     <div class="head">
-      <div class="model">型号：{{model}}</div>
+      <div class="model">{{ $t("Sale.model") }}：{{model}}</div>
       <img style="width: 239px;height: 286px;margin-bottom: 10px;" v-bind:src="mode_img">
       <div class="detail">
         <div class="font">
-          库存：{{data.number}}箱
-          {{data.much}}件/箱
+          {{ $t("Sale.inventory") }}：{{data.number}}{{ $t("Sale.box") }}
+          {{data.much}}{{ $t("Sale.a_box") }}
         </div>
-        <div class="font">子型号：{{}}</div>
-        <div class="font">颜色：{{}}</div>
-        <div class="font">尺寸：{{}}</div>
+        <div class="font">{{ $t("Sale.sub_models") }}：{{}}</div>
+        <div class="font">{{ $t("Sale.color") }}：{{}}</div>
+        <div class="font">{{ $t("Sale.size") }}：{{}}</div>
       </div>
     </div>
     <div class="buy">
-      <div class="font">价格：7.5€</div>
+      <div class="font">{{ $t("Sale.price") }}：7.5€</div>
       <div class="buy_box">
-        <div class="font number_top">购买箱数：<input type="number" class="number" name="points"/></div>
-        <div class="font" @click="buy_leave">+购买尾箱</div>
+        <div class="font number_top">{{ $t("Sale.buy_box_number") }}：<input type="number" class="number" name="points"/></div>
+        <div class="font" @click="buy_leave">+{{ $t("Sale.buy_tail_box") }}</div>
       </div>
       
       <div v-if="leave_box_Vis == true">
 
         <div class="buy_box_table">
-          <div class="table_left">购买尾箱数</div>
-          <div class="table_right">每件箱数</div>
+          <div class="table_left">{{ $t("Sale.buy_tail_box_number") }}</div>
+          <div class="table_right">{{ $t("Sale.each_container_number") }}</div>
         </div>
         <div class="table_line" v-for="(item,index) in leave_box_buy_list" :key="index">
           <div class="table_line_left">{{item.buy_number}}</div>
@@ -49,7 +49,7 @@
       
     </div>
 
-    <mt-button size="large" @click="add_to_buy_list_data" class="buy_button">添加到购物车</mt-button>
+    <mt-button size="large" @click="add_to_buy_list_data" class="buy_button">{{ $t("Sale.add_to_shopping_cart") }}</mt-button>
   </div>
 </template>
 

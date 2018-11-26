@@ -2,8 +2,8 @@
   <div>
     <mt-navbar v-model="selected">
       <mt-tab-item id="1">{{ $t("Sale.commodity") }}</mt-tab-item>
-      <mt-tab-item id="2">退货</mt-tab-item>
-      <mt-tab-item id="3">调整</mt-tab-item>
+      <mt-tab-item id="2">{{ $t("Sale.sales_return") }}</mt-tab-item>
+      <mt-tab-item id="3">{{ $t("Sale.adjust") }}</mt-tab-item>
     </mt-navbar>
     
     <!-- tab-container -->
@@ -24,7 +24,7 @@
               </div>
               <div class="number_css">
                 <img :src="number_img" class="number_img" />
-                库存{{leftItem.number}}箱
+                {{ $t("Sale.inventory") }}{{leftItem.number}}{{ $t("Sale.box") }}
               </div>
             </div>
 
@@ -41,7 +41,7 @@
               </div>
               <div class="number_css">
                 <img :src="number_img" class="number_img" />
-                库存{{rightItem.number}}箱
+                {{ $t("Sale.inventory") }}{{rightItem.number}}{{ $t("Sale.box") }}
               </div>
             </div>
           </div>
@@ -51,30 +51,30 @@
 
       <mt-tab-container-item id="2">
         <!-- <mt-cell v-for="n in 4" :title="'退货 ' + n" /> -->
-        <div class="query_font">查询订单</div>
+        <div class="query_font">{{ $t("Sale.query_order") }}</div>
         <div class="query">
           <input type="text" name="nameinput" class="nameinput" placeholder="姓名/电话">
           <div class="query_time">
 
             <mt-field class="border_no" placeholder="" type="date" v-model="begtime"></mt-field>
-            <div>至</div>
+            <div>~</div>
             <mt-field class="border_no" placeholder="" type="date" v-model="endtime"></mt-field>
 
           </div>
 
-          <mt-button class="query_btu" @click="query_btu" type="primary">查询</mt-button>
+          <mt-button class="query_btu" @click="query_btu" type="primary">{{ $t("Sale.query") }}</mt-button>
 
         </div>
         <div class="boxlist">
-          <div class="full_box">整箱</div>
+          <div class="full_box">{{ $t("Sale.the_whole_case") }}</div>
         
           <table class="tablestyle">
             <tr class="table_head">
-              <th>型号</th>
-              <th>颜色</th>
-              <th>数量</th>
-              <th>件/箱</th>
-              <th>价格</th>
+              <th>{{ $t("Sale.model") }}</th>
+              <th>{{ $t("Sale.color") }}</th>
+              <th>{{ $t("Sale.number") }}</th>
+              <th>{{ $t("Sale.a_box") }}</th>
+              <th>{{ $t("Sale.price") }}</th>
             </tr>
             <tr v-for="(item,index) in full_box_list" :key="index">
               <td>{{item.model}}</td>
@@ -86,15 +86,15 @@
           </table>
 
 
-          <div class="full_box">尾箱</div>
+          <div class="full_box">{{ $t("Sale.tail_box") }}</div>
         
           <table class="tablestyle">
             <tr class="table_head">
-              <th>型号</th>
-              <th>颜色</th>
-              <th>数量</th>
-              <th>件/箱</th>
-              <th>价格</th>
+              <th>{{ $t("Sale.model") }}</th>
+              <th>{{ $t("Sale.color") }}</th>
+              <th>{{ $t("Sale.number") }}</th>
+              <th>{{ $t("Sale.a_box") }}</th>
+              <th>{{ $t("Sale.price") }}</th>
             </tr>
             <tr v-for="(item,index) in leave_box_list" :key="index">
               <td>{{item.model}}</td>
@@ -118,11 +118,11 @@
           <!-- data source ： querydata-->
           <table class="tablestyle">
             <tr class="table_head">
-              <th>订单编号</th>
-              <th>型号</th>
-              <th>单价</th>
-              <th>数量</th>
-              <th>日期</th>
+              <th>{{ $t("Sale.order_number") }}</th>
+              <th>{{ $t("Sale.model") }}</th>
+              <th>{{ $t("Sale.unit_price") }}</th>
+              <th>{{ $t("Sale.number") }}</th>
+              <th>{{ $t("Sale.data") }}</th>
             </tr>
             <tr v-for="(item,index) in querydata" :key="index">
               <td>{{item.id}}</td>
@@ -132,7 +132,7 @@
               <td>{{item.date}}</td>
             </tr>
           </table>
-          <mt-button class="query_btu" @click="close_query_result" type="primary">确定</mt-button>
+          <mt-button class="query_btu" @click="close_query_result" type="primary">{{ $t("Sale.confirm") }}</mt-button>
         </div>
 
         </mt-popup>

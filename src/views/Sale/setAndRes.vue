@@ -3,19 +3,19 @@
       <div class="setAndRes">
         <!-- 表单title -->
         <div class="head_title">
-          <div class="title_font" v-if="routeForm == 0">结算单</div>
-          <div class="title_font" v-if="routeForm == 1">预定单</div>
+          <div class="title_font" v-if="routeForm == 0">{{ $t("Sale.statements") }}</div>
+          <div class="title_font" v-if="routeForm == 1">{{ $t("Sale.pre_order") }}</div>
         </div>
 
         <!-- 数据展示 -->
         <table class="showBody">
           <tr>
-            <th>型号</th>
-            <th>子型号</th>
-            <th>颜色</th>
-            <th>每箱件数</th>
-            <th>尺寸</th>
-            <th>销售模式</th>
+            <th>{{ $t("Sale.model") }}</th>
+            <th>{{ $t("Sale.sub_models") }}</th>
+            <th>{{ $t("Sale.color") }}</th>
+            <th>{{ $t("Sale.the_quantity_of_each") }}</th>
+            <th>{{ $t("Sale.size") }}</th>
+            <th>{{ $t("Sale.sales_model") }}</th>
           </tr>
           <tr v-for="(item, index) in routeData" :key="index">
             <td>{{item.mode}}</td>
@@ -27,8 +27,8 @@
           </tr>
         </table>
         <div v-if="routeForm == 1">
-          <div>结算状态：成功</div>
-          <div>结算金额：10000</div>
+          <div>{{item.settlement}}：{{item.success}}</div>
+          <div>{{item.amount}}：10000</div>
         </div>
       </div>
     </div>
