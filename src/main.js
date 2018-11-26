@@ -9,11 +9,16 @@ import VueI18n from 'vue-i18n'
 import LangEn from './lang/en'
 import LangZh from './lang/zh'
 
+import Vant from 'vant';
+import 'vant/lib/index.css';
+
+
 Vue.config.productionTip = false;
 Vue.prototype.$req = Api;
 
 Vue.use(MintUI);
 Vue.use(VueI18n);
+Vue.use(Vant);
 
 const i18n = new VueI18n({
     locale: 'zh',

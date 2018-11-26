@@ -137,7 +137,14 @@
               </div>
             </div>
             <div class="buy_list_delete">
-              <input type="number" class="number" name="number">
+              <div class="step_css">
+                <van-stepper
+                  integer
+                  :min="0"
+                  :max="1000000"
+                  :step="1"
+                />
+              </div>
               <img :src="del_img" @click="del(index)" class="del_img"/>
             </div>
           </div>
@@ -178,7 +185,8 @@
                   color: "红色",
                   number: 75,
                   size: "XL",
-                  sale_way: "整箱"
+                  sale_way: "整箱",
+                  num: 4
                 },{
                   picurl: mode,
                   mode: 8333,
@@ -186,7 +194,8 @@
                   color: "红色",
                   number: 75,
                   size: "XL",
-                  sale_way: "整箱"
+                  sale_way: "整箱",
+                  num: 4
                 },{
                   picurl: mode,
                   mode: 8333,
@@ -194,7 +203,8 @@
                   color: "红色",
                   number: 75,
                   size: "XL",
-                  sale_way: "整箱"
+                  sale_way: "整箱",
+                  num: 4
                 }]
             }
         },
@@ -348,5 +358,8 @@
   .reservation {
     width: 100px;
     border-radius: 3em;
+  }
+  .step_css {
+    border: red 1px solid;
   }
 </style>
