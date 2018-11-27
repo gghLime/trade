@@ -88,5 +88,10 @@ export default{
         settlement: '结算状态',
         success: '成功',
         amount: '结算金额'
+    },
+
+    //Finance页面
+    finance: {
+        saleslis: '销售清单',
     }
 }
