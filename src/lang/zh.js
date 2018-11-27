@@ -72,7 +72,7 @@ export default{
         tail_box: '尾箱',
         buy_tail_box: '购买尾箱',
         buy_tail_box_number: '购买尾箱数',
-        each_container_number: '每件箱数',
+        each_container_number: '每箱件数',
         the_quantity_of_each: '每箱件数',
         unit_price: '单价',
         data: '日期',

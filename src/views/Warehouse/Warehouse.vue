@@ -8,42 +8,41 @@
             <mt-tab-item id="4">{{ $t("warehouse.stocktaking") }}</mt-tab-item>
         </mt-navbar>
 
-        <mt-tab-container v-model="selected" style="padding: 10px">
+        <mt-tab-container v-model="selected" style="padding-top: 10px">
             <mt-tab-container-item id="1">
-                <div class="box1">
-                    <div class="box2">
-                        <div class="box3" v-for="product in products">
+                <div class="firsttable">
+                    <div class="box3" v-for="product in products">
                             <div class="box331"></div>
-                            <div class="box332">
-                                <table style="text-align: left">
+                            <div class="box332" style="width: 80%">
+                                <table style="text-align: left" border="1" cellspacing="0" >
                                     <tr>
-                                        <th> {{ $t("warehouse.product_model") }}:</th>
-                                        <td> {{product.product_model}} </td>
-                                        <th style="padding-left: 40px"> {{ $t("warehouse.product_submodel") }}:</th>
-                                        <td> {{product.product_submodel}}</td>
+                                        <th style="width: 15%"> {{ $t("warehouse.product_model") }}:</th>
+                                        <td style="width: 35%"> {{product.product_model}} </td>
+                                        <th style="width: 15%"> {{ $t("warehouse.product_submodel") }}:</th>
+                                        <td style="width: 35%"> {{product.product_submodel}}</td>
                                     </tr>
                                     <tr>
                                         <th> {{ $t("warehouse.product_size") }}:</th>
                                         <td> {{product.product_size}} </td>
-                                        <th style="padding-left: 40px"> {{ $t("warehouse.product_color") }}:</th>
+                                        <th> {{ $t("warehouse.product_color") }}:</th>
                                         <td> {{product.product_color}}</td>
                                     </tr>
                                     <tr>
                                         <th> {{ $t("warehouse.company_num") }}:</th>
                                         <td> {{product.company_num}} </td>
-                                        <th style="padding-left: 40px"> {{ $t("warehouse.inventories") }}:</th>
+                                        <th> {{ $t("warehouse.inventories") }}:</th>
                                         <td> {{product.inventories}}</td>
                                     </tr>
                                     <tr>
                                         <th> {{ $t("warehouse.full") }}:</th>
                                         <td> {{product.full}} </td>
-                                        <th style="padding-left: 40px"> {{ $t("warehouse.full_num") }}:</th>
+                                        <th> {{ $t("warehouse.full_num") }}:</th>
                                         <td> {{product.full_num}}</td>
                                     </tr>
                                     <tr v-for= "tail in product.tail_list" >
                                         <th> {{ $t("warehouse.tail") }}:</th>
                                         <td> {{tail.tail}}</td>
-                                        <th style="padding-left: 40px"> {{ $t("warehouse.tail_num") }}:</th>
+                                        <th> {{ $t("warehouse.tail_num") }}:</th>
                                         <td> {{tail.tail_num}}</td>
                                     </tr>
 
@@ -51,31 +50,42 @@
 
                             </div>
                         </div><br>
-                    </div>
                 </div>
             </mt-tab-container-item>
             <mt-tab-container-item id="2">
                 <div class="box1"  v-if="isPulled === false" >
-                    <table>
+                    <table border="1" cellspacing="0">
                         <tr>
-                            <th><mt-field v-bind:label="$t('warehouse.product_model')" v-bind:placeholder="$t('warehouse.product_model_edit')" v-model="list_in.product_model"></mt-field></th>
-                            <th><mt-field v-bind:label="$t('warehouse.product_submodel')" v-bind:placeholder="$t('warehouse.product_submodel_edit')" v-model="list_in.product_submodel"></mt-field></th>
+                            <th style="width: 15%">{{$t('warehouse.product_model')}}:</th>
+                            <td style="width: 35%"><mt-field v-bind:placeholder="$t('warehouse.product_model_edit')" v-model="list_in.product_model"></mt-field></td>
+                            <th style="width: 15%">{{$t('warehouse.product_submodel')}}:</th>
+                            <td style="width: 35%"><mt-field v-bind:placeholder="$t('warehouse.product_submodel_edit')" v-model="list_in.product_submodel"></mt-field></td>
                         </tr>
                         <tr>
-                            <th><mt-field v-bind:label="$t('warehouse.product_color')" v-bind:placeholder="$t('warehouse.product_color_edit')" v-model="list_in.product_color"></mt-field></th>
-                            <th><mt-field v-bind:label="$t('warehouse.product_size')" v-bind:placeholder="$t('warehouse.product_size_edit')" v-model="list_in.product_size"></mt-field></th>
+                            <th>{{$t('warehouse.product_color')}}:</th>
+                            <td><mt-field v-bind:placeholder="$t('warehouse.product_color_edit')" v-model="list_in.product_color"></mt-field></td>
+                            <th>{{$t('warehouse.product_size')}}</th>
+                            <td><mt-field v-bind:placeholder="$t('warehouse.product_size_edit')" v-model="list_in.product_size"></mt-field></td>
                         </tr>
                         <tr>
-                            <th><mt-field v-bind:label="$t('warehouse.full')" v-bind:placeholder="$t('warehouse.num_edit')" v-model="list_in.full"></mt-field></th>
-                            <th><mt-field v-bind:label="$t('warehouse.full_num')" v-bind:placeholder="$t('warehouse.box_num_edit')" v-model="list_in.full_num"></mt-field></th>
+                            <th>{{$t('warehouse.full')}}:</th>
+                            <td><mt-field v-bind:placeholder="$t('warehouse.num_edit')" v-model="list_in.full"></mt-field></td>
+                            <th>{{$t('warehouse.full_num')}}:</th>
+                            <td><mt-field v-bind:placeholder="$t('warehouse.box_num_edit')" v-model="list_in.full_num"></mt-field></td>
                         </tr>
                         <tr v-for="tail in list_in.tail_list">
-                            <th><mt-field v-bind:label="$t('warehouse.tail')" v-bind:placeholder="$t('warehouse.num_edit')" v-model="tail.tail"></mt-field></th>
-                            <th><mt-field v-bind:label="$t('warehouse.tail_num')" v-bind:placeholder="$t('warehouse.box_num_edit')" v-model="tail.tail_num"></mt-field></th>
+                            <th>{{$t('warehouse.tail')}}</th>
+                            <td><mt-field v-bind:placeholder="$t('warehouse.num_edit')" v-model="tail.tail"></mt-field></td>
+                            <th>{{$t('warehouse.tail_num')}}</th>
+                            <td><mt-field v-bind:placeholder="$t('warehouse.box_num_edit')" v-model="tail.tail_num"></mt-field></td>
                         </tr>
+                    </table>
+                    <table>
                         <tr>
-                            <th><mt-button @click="addInInfo">{{ $t("warehouse.add_in") }}</mt-button></th>
-                            <th><mt-button @click="addTailInfo">{{ $t("warehouse.tail_add_in") }}</mt-button></th>
+                            <th></th>
+                            <td style="width: 50%"><mt-button @click="addInInfo">{{ $t("warehouse.add_in") }}</mt-button></td>
+                            <th></th>
+                            <td style="width: 50%"><mt-button @click="addTailInfo">{{ $t("warehouse.tail_add_in") }}</mt-button></td>
                         </tr>
                     </table>
                 </div>
@@ -84,80 +94,88 @@
                     <mt-button  @click.native="changeStatus" v-if="isPulled === false">▲</mt-button>
                 </div>
                 <div class="box1">
-                    <div class="box2">
-                        <div class="box3" v-for="product in products_in">
+                    <div class="box3" v-for="product in products_in">
                             <div  class="box331" ></div>
-                            <div class="box332">
-                                <table style="text-align: left">
+                            <div class="box332" style="width: 80%">
+                                <table style="text-align: left"  border="1" cellspacing="0">
                                     <tr>
-                                        <th> {{ $t("warehouse.product_model") }}:</th>
-                                        <td> {{product.product_model}} </td>
-                                        <th style="padding-left: 40px"> {{ $t("warehouse.product_submodel") }}:</th>
-                                        <td> {{product.product_submodel}}</td>
+                                        <th style="width: 15%"> {{ $t("warehouse.product_model") }}:</th>
+                                        <td style="width: 35%"> {{product.product_model}} </td>
+                                        <th style="width: 15%"> {{ $t("warehouse.product_submodel") }}:</th>
+                                        <td style="width: 35%"> {{product.product_submodel}}</td>
                                     </tr>
                                     <tr>
                                         <th> {{ $t("warehouse.product_size") }}:</th>
                                         <td> {{product.product_size}} </td>
-                                        <th style="padding-left: 40px"> {{ $t("warehouse.product_color") }}:</th>
+                                        <th> {{ $t("warehouse.product_color") }}:</th>
                                         <td> {{product.product_color}}</td>
                                     </tr>
                                     <tr>
                                         <th> {{ $t("warehouse.company_num") }}:</th>
                                         <td> {{product.company_num}} </td>
-                                        <th style="padding-left: 40px"> {{ $t("warehouse.inventories") }}:</th>
+                                        <th> {{ $t("warehouse.inventories") }}:</th>
                                         <td> {{product.inventories}}</td>
                                     </tr>
                                     <tr>
                                         <th> {{ $t("warehouse.full") }}:</th>
                                         <td> {{product.full}} </td>
-                                        <th style="padding-left: 40px"> {{ $t("warehouse.full_num") }}:</th>
+                                        <th> {{ $t("warehouse.full_num") }}:</th>
                                         <td> {{product.full_num}}</td>
                                     </tr>
                                     <tr v-for= "tail in product.tail_list" >
                                         <th> {{ $t("warehouse.tail") }}:</th>
                                         <td> {{tail.tail}}</td>
-                                        <th style="padding-left: 40px"> {{ $t("warehouse.tail_num") }}:</th>
+                                        <th> {{ $t("warehouse.tail_num") }}:</th>
                                         <td> {{tail.tail_num}}</td>
                                     </tr>
                                 </table>
                             </div>
                         </div><br>
-                    </div>
                 </div>
                 <mt-button @click="uploadWarehouseIn">{{$t("warehouse.confirm_warehouse_in")}}</mt-button>
-                <mt-popup v-model="tail_in_visible" style="width: 90%">
+                <mt-popup v-model="tail_in_visible" style="width: 95%">
+                    <table border="1" cellspacing="0">
+                        <tr>
+                            <th style="width: 20%">{{$t('warehouse.tail')}}:</th>
+                            <td style="width: 30%"><mt-field v-bind:placeholder="$t('warehouse.num_edit')" v-model="tail_list_in.tail"></mt-field></td>
+                            <th style="width: 20%">{{$t('warehouse.tail_num')}}:</th>
+                            <td style="width: 30%"><mt-field v-bind:placeholder="$t('warehouse.box_num_edit')" v-model="tail_list_in.tail_num"></mt-field></td>
+                        </tr>
+                    </table>
                     <table>
                         <tr>
-                            <th><mt-field v-bind:label="$t('warehouse.tail')" v-bind:placeholder="$t('warehouse.num_edit')" v-model="tail_list_in.tail"></mt-field></th>
-                            <th><mt-field v-bind:label="$t('warehouse.tail_num')" v-bind:placeholder="$t('warehouse.box_num_edit')" v-model="tail_list_in.tail_num"></mt-field></th>
-                        </tr>
-                        <tr>
-                            <th><mt-button @click="addTailToListIn">{{$t("basic.ok")}}</mt-button></th>
-                            <th><mt-button @click="cancelTailToListIn">{{$t("basic.cancel")}}</mt-button></th>
+                            <th></th>
+                            <td style="width: 50%"><mt-button @click="addTailToListIn">{{$t("basic.ok")}}</mt-button></td>
+                            <th></th>
+                            <td style="width: 50%"><mt-button @click="cancelTailToListIn">{{$t("basic.cancel")}}</mt-button></td>
                         </tr>
                     </table>
                 </mt-popup>
             </mt-tab-container-item>
             <mt-tab-container-item id="3">
                 <mt-button @click="showSaleSlip">{{ $t("warehouse.chooseSaleSlip") }}</mt-button>
-                <mt-popup v-model="saleslip_visible" style="width: 90%">
-                    <div>
-                        <table>
+                <mt-popup v-model="saleslip_visible" style="width: 95%">
+                    <div style="border: 2px solid black;" >
+                        <table border="1" cellspacing="0">
                             <tr>
-                                <th><mt-field v-bind:label="$t('customer.customer_name')" v-bind:placeholder="$t('customer.customer_name_edit')" v-model="saleslip.name"></mt-field></th>
-                                <th><mt-field v-bind:label="$t('customer.customer_tele')" v-bind:placeholder="$t('customer.customer_tele_edit')" v-model="saleslip.phone"></mt-field></th>
+                                <th>{{$t('customer.customer_name')}}:</th>
+                                <th colspan="2"><mt-field v-bind:placeholder="$t('customer.customer_name_edit')" v-model="saleslip.name"></mt-field></th>
+                                <th>{{$t('customer.customer_tele')}}:</th>
+                                <th colspan="2"><mt-field v-bind:placeholder="$t('customer.customer_tele_edit')" v-model="saleslip.phone"></mt-field></th>
                             </tr>
-                        </table>
-                        <table>
                             <tr>
-                                <th><mt-field v-bind:label="$t('basic.start_time')" v-bind:placeholder="$t('basic.start_time_select')" v-model="saleslip.start_date" disabled="true"></mt-field></th>
+                                <th>{{$t('basic.start_time')}}:</th>
+                                <th><mt-field v-bind:placeholder="$t('basic.start_time_select')" v-model="saleslip.start_date" disabled="true"></mt-field></th>
                                 <th><mt-button @click="openPicker(true)">···</mt-button></th>
-                                <th><mt-field v-bind:label="$t('basic.end_time')" v-bind:placeholder="$t('basic.end_time_select')" v-model="saleslip.end_date" disabled="true"></mt-field></th>
+                                <th>{{$t('basic.end_time')}}:</th>
+                                <th><mt-field v-bind:placeholder="$t('basic.end_time_select')" v-model="saleslip.end_date" disabled="true"></mt-field></th>
                                 <th><mt-button @click="openPicker(false)">···</mt-button></th>
                             </tr>
+                            <tr>
+                                <th colspan="6"><mt-button @click="searchSaleSlips">{{ $t("warehouse.search_saleslip") }}</mt-button></th>
+                            </tr>
                         </table>
-                        <mt-button @click="searchSaleSlips">{{ $t("warehouse.search_saleslip") }}</mt-button>
-                        <table>
+                        <table border="1" cellspacing="0">
                             <tr>
                                 <th>{{ $t("warehouse.sale_num") }}</th>
                                 <th>{{ $t("customer.customer_name") }}</th>
@@ -166,48 +184,55 @@
                                 <th>{{ $t("warehouse.sale_time") }}</th>
                             </tr>
                             <tr v-for="saleslip in saleslips">
-                                <td><mt-cell v-model="saleslip.sale_num" ></mt-cell></td>
-                                <td><mt-cell v-model="saleslip.customer_name"></mt-cell></td>
-                                <td><mt-cell v-model="saleslip.customer_tele"></mt-cell></td>
-                                <td><mt-cell v-model="saleslip.customer_address"></mt-cell></td>
-                                <td><mt-cell v-model="saleslip.sale_date"></mt-cell></td>
+                                <td style="width: 10%"><mt-cell v-model="saleslip.sale_num" ></mt-cell></td>
+                                <td style="width: 10%"><mt-cell v-model="saleslip.customer_name"></mt-cell></td>
+                                <td style="width: 10%"><mt-cell v-model="saleslip.customer_tele"></mt-cell></td>
+                                <td style="width: 15%"><mt-cell v-model="saleslip.customer_address"></mt-cell></td>
+                                <td style="width: 50%"><mt-cell v-model="saleslip.sale_date"></mt-cell></td>
+                            </tr>
+                            <tr>
+                                <th colspan="6"><mt-button @click="showSaleSlip">{{ $t("basic.ok") }}</mt-button></th>
                             </tr>
                         </table>
-                        <mt-button @click="showSaleSlip">{{ $t("basic.ok") }}</mt-button>
                     </div>
                 </mt-popup>
                 <div class="box1">
-                    <div class="box2">
-                        <div class="boxsale" v-for="obj in saleslips ">
-                            <table><tr>
-                                <th style="width: 70%"><mt-field v-bind:label="$t('warehouse.sale_num')" v-model="obj.sale_num"></mt-field></th>
-                                <th><mt-button @click="deleteSaleSlip()">{{ $t("basic.delete") }}</mt-button></th>
-                            </tr></table>
-                            <table><tr>
-                                <th style="width: 50%"><mt-field v-bind:label="$t('customer.customer_name')" v-model="obj.customer_name"></mt-field></th>
-                                <th style="width: 50%"><mt-field v-bind:label="$t('customer.customer_tele')" v-model="obj.customer_tele"></mt-field></th>
-                            </tr></table>
-                            <table><tr>
-                                <th style="width: 100%"><mt-field v-bind:label="$t('customer.customer_address')" v-model="obj.customer_address"></mt-field></th>
-                            </tr></table>
-                            <table>
+                    <div class="boxsale" v-for="obj in saleslips ">
+                            <table border="1" cellspacing="0" ><tr>
+                                <th style="width: 20%">{{$t('warehouse.sale_num')}}:</th>
+                                <td style="width: 30%" colspan="2"><mt-field v-model="obj.sale_num"></mt-field></td>
+                                <!--<th style="width: 20%"　colspan="2"></th>-->
+                                <td style="width: 30%" colspan="3"><mt-button @click="deleteSaleSlip()">{{ $t("basic.delete") }}</mt-button></td>
+                            </tr>
+                            <tr>
+                                <th style="width: 20%">{{$t('customer.customer_name')}}:</th>
+                                <td style="width: 30%" colspan="2"><mt-field v-model="obj.customer_name"></mt-field></td>
+                                <th style="width: 20%">{{$t('customer.customer_tele')}}:</th>
+                                <td style="width: 30%" colspan="2"><mt-field v-model="obj.customer_tele"></mt-field></td>
+                            </tr>
+                            <tr>
+                                <th style="width: 20%">{{$t('customer.customer_address')}}:</th>
+                                <th style="width: 30%"　colspan="5"><mt-field v-model="obj.customer_address"></mt-field></th>
+                            </tr>
                                 <tr>
                                     <th style="width: 20%">{{ $t("basic.type") }}</th>
                                     <th style="width: 20%">{{ $t("warehouse.product_model") }}</th>
                                     <th style="width: 20%">{{ $t("warehouse.product_submodel") }}</th>
                                     <th style="width: 20%">{{ $t("warehouse.product_color") }}</th>
-                                    <th style="width: 20%">{{ $t("basic.box_num") }}</th>
+                                    <th style="width: 20%">{{ $t("warehouse.product_size") }}</th>
+                                    <th style="width: 20%" >{{ $t("basic.box_num") }}</th>
+
                                 </tr>
                                 <tr v-for="_obj in obj.box_list">
                                     <td style="width: 20%"><mt-cell v-model="_obj.box_type"></mt-cell></td>
                                     <td style="width: 20%"><mt-cell v-model="_obj.product_model"></mt-cell></td>
                                     <td style="width: 20%"><mt-cell v-model="_obj.product_submodel"></mt-cell></td>
                                     <td style="width: 20%"><mt-cell v-model="_obj.product_color"></mt-cell></td>
+                                    <td style="width: 20%"><mt-cell v-model="_obj.product_size"></mt-cell></td>
                                     <td style="width: 20%"><mt-cell v-model="_obj.box_num"></mt-cell></td>
                                 </tr>
                             </table>
                         </div>
-                    </div>
                 </div>
                 <mt-button @click="uploadWarehouseOut">{{ $t("warehouse.confirm_warehouse_out") }}</mt-button>
                 <mt-datetime-picker ref="picker_start" type="date" v-model="saleslip.start_date" @confirm="handleConfirm(true)"
@@ -221,45 +246,44 @@
             </mt-tab-container-item>
             <mt-tab-container-item id="4">
                 <div class="box1">
-                    <div class="box2">
-                        <div class="box3" v-for="product in products">
+                    <div class="box3" v-for="product in products">
                             <div class="box331"></div>
                             <div class="box332">
-                                <table style="text-align: left">
+                                <table style="text-align: left"  border="1" cellspacing="0">
                                     <tr>
                                         <th> {{ $t("warehouse.product_model") }}:</th>
                                         <td> {{product.product_model}} </td>
-                                        <th style="padding-left: 40px"> {{ $t("warehouse.product_submodel") }}:</th>
+                                        <th> {{ $t("warehouse.product_submodel") }}:</th>
                                         <td> {{product.product_submodel}}</td>
                                     </tr>
                                     <tr>
                                         <th> {{ $t("warehouse.product_size") }}:</th>
                                         <td> {{product.product_size}} </td>
-                                        <th style="padding-left: 40px"> {{ $t("warehouse.product_color") }}:</th>
+                                        <th> {{ $t("warehouse.product_color") }}:</th>
                                         <td> {{product.product_color}}</td>
                                     </tr>
                                     <tr>
                                         <th> {{ $t("warehouse.company_num") }}:</th>
                                         <td> {{product.company_num}} </td>
-                                        <th style="padding-left: 40px"> {{ $t("warehouse.inventories") }}:</th>
+                                        <th> {{ $t("warehouse.inventories") }}:</th>
                                         <td> {{product.inventories}}</td>
                                     </tr>
                                     <tr>
                                         <th> {{ $t("warehouse.full") }}:</th>
                                         <td> {{product.full}} </td>
-                                        <th style="padding-left: 40px"> {{ $t("warehouse.full_num") }}:</th>
+                                        <th> {{ $t("warehouse.full_num") }}:</th>
                                         <td> {{product.full_num}}</td>
                                     </tr>
                                     <tr v-for= "tail in product.tail_list" >
                                         <th> {{ $t("warehouse.tail") }}:</th>
                                         <td> {{tail.tail}}</td>
-                                        <th style="padding-left: 40px"> {{ $t("warehouse.tail_num") }}:</th>
+                                        <th> {{ $t("warehouse.tail_num") }}:</th>
                                         <td> {{tail.tail_num}}</td>
                                     </tr>
                                 </table>
                             </div>
                             <div class="box333">
-                                <table>
+                                <table  border="1" cellspacing="0">
                                     <tr>
                                         <th><mt-button @click="checked">{{ $t("basic.confirm") }}</mt-button></th>
                                     </tr>
@@ -269,31 +293,38 @@
                                 </table>
                             </div>
                         </div><br>
-                    </div>
                 </div>
                 <mt-button @click="modifyInventories">{{ $t("warehouse.stocktaking_complete") }}</mt-button>
                 <mt-popup v-model="modify_visible" style="width: 90%">
-                    <table style="text-align: left">
+                    <table style="text-align: left"  border="1" cellspacing="0">
                         <tr>
-                            <th><mt-field v-bind:label="$t('warehouse.product_model')"></mt-field></th>
-                            <th><mt-field v-bind:label="$t('warehouse.product_submodel')"></mt-field></th>
+                            <th>{{$t('warehouse.product_model')}}:</th>
+                            <td><mt-field></mt-field></td>
+                            <th>{{$t('warehouse.product_submodel')}}:</th>
+                            <td colspan="2"><mt-field></mt-field></td>
                         </tr>
                         <tr>
-                            <th><mt-field v-bind:label="$t('warehouse.product_color')"></mt-field></th>
-                            <th><mt-field v-bind:label="$t('warehouse.product_size')"></mt-field></th>
+                            <th>{{$t('warehouse.product_color')}}:</th>
+                            <td><mt-field></mt-field></td>
+                            <th>{{$t('warehouse.product_size')}}:</th>
+                            <td colspan="2"><mt-field></mt-field></td>
                         </tr>
                         <tr>
-                            <th><mt-field v-bind:label="$t('warehouse.full')"></mt-field></th>
-                            <th><mt-field v-bind:label="$t('warehouse.full_num')"></mt-field></th>
+                            <th>{{$t('warehouse.full')}}:</th>
+                            <td><mt-field></mt-field></td>
+                            <th>{{$t('warehouse.full_num')}}:</th>
+                            <td colspan="2"><mt-field></mt-field></td>
                         </tr>
                         <tr>
-                            <th><mt-field v-bind:label="$t('warehouse.tail')"></mt-field></th>
-                            <th><mt-field v-bind:label="$t('warehouse.tail_num')"></mt-field></th>
+                            <th>{{$t('warehouse.tail')}}:</th>
+                            <td><mt-field></mt-field></td>
+                            <th>{{$t('warehouse.tail_num')}}:</th>
+                            <td><mt-field></mt-field></td>
                             <th><mt-button @click="deleteTail">{{ $t("basic.delete") }}</mt-button></th>
                         </tr>
                         <tr>
-                            <th><mt-button @click="addTail">{{ $t("warehouse.add_tail") }}</mt-button></th>
-                            <th><mt-button @click="showModifySaleslip">{{ $t("basic.ok") }}</mt-button></th>
+                            <th colspan="2"><mt-button @click="addTail">{{ $t("warehouse.add_tail") }}</mt-button></th>
+                            <th colspan="3"><mt-button @click="showModifySaleslip">{{ $t("basic.ok") }}</mt-button></th>
                         </tr>
                     </table>
                 </mt-popup>
@@ -313,7 +344,7 @@
         },
         data: function () {
             return {
-                selected: "1",                              // 分页控制
+                selected: "4",                              // 分页控制
                 isPulled:false,                            // 下来按钮状态控制
                 tail_in_visible:false,                     // 是否显示尾箱录入画面
                 saleslip_visible:false,                    // 是否显示销售单
@@ -339,6 +370,14 @@
                         "company_num":"A0004","full":"170","full_num":"4",
                         "tail_list":[{"tail":"46","tail_num":"2"},]
                     },
+                    { "product_model":"test","product_submodel":"0002","product_size":"L","product_color":"WHITE","inventories":"400",
+                        "company_num":"A0004","full":"170","full_num":"4",
+                        "tail_list":[{"tail":"46","tail_num":"2"},]
+                    },
+                    { "product_model":"test","product_submodel":"0002","product_size":"L","product_color":"WHITE","inventories":"400",
+                        "company_num":"A0004","full":"170","full_num":"4",
+                        "tail_list":[{"tail":"46","tail_num":"2"},]
+                    },
                 ],                            // 库存数据
                 products_in: [
                     { "product_model":"test","product_submodel":"0001","product_size":"XL","product_color":"RED","inventories":"180",
@@ -349,8 +388,8 @@
                 saleslip:{},                                // 销售单数据
                 saleslips:[
                     {"sale_num":"100001","customer_name":"Allen","customer_tele":"138123456789","customer_address":"ST.Louis No.1","sale_date":"2018-11-20",
-                    "box_list":[{"box_type":"整箱","product_model":"test","product_submodel":"0001","product_color":"RED","box_num":"15"},
-                        {"box_type":"整箱","product_model":"test","product_submodel":"0001","product_color":"RED","box_num":"15"}]
+                    "box_list":[{"box_type":"整箱","product_model":"test","product_submodel":"0001","product_color":"RED","box_num":"15","product_size":"M"},
+                        {"box_type":"整箱","product_model":"test","product_submodel":"0001","product_color":"RED","box_num":"15","product_size":"XL"}]
                     }
                 ]                             // 出库数据
             }
@@ -494,7 +533,6 @@
     }
     .box3{
         border: 1px solid black;
-        height: 150px;
         overflow: hidden;
         padding: 10px;
     }
@@ -521,7 +559,7 @@
     .box331{
         background-image: url("../../assets/mode.jpg");
         background-size: cover;
-        height:100%;
+        height:80px;
         width: 20%;
     }
     .box332{
@@ -531,6 +569,12 @@
     .box333{
         height: 100%;
         width: 10%;
+    }
+    .firsttable{
+        overflow: scroll;
+        height: 480px;
+        width: calc(100% - 7px);
+        border: 1px solid black;
     }
 </style>
 

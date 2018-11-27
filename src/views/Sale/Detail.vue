@@ -8,15 +8,28 @@
           {{ $t("Sale.inventory") }}：{{data.number}}{{ $t("Sale.box") }}
           {{data.much}}{{ $t("Sale.a_box") }}
         </div>
-        <div class="font">{{ $t("Sale.sub_models") }}：{{}}</div>
-        <div class="font">{{ $t("Sale.color") }}：{{}}</div>
-        <div class="font">{{ $t("Sale.size") }}：{{}}</div>
+        <div class="font inline">
+          {{ $t("Sale.sub_models") }}：
+          <van-tabs type="card" class="tabs1" @click="chooseModel1">
+            <van-tab v-for="(item, index) in leab" :key="index" :title="item"></van-tab>
+          </van-tabs>
+        </div>
+        <div class="font inline">{{ $t("Sale.color") }}：
+          <van-tabs type="card" class="tabs2" @click="chooseModel2">
+            <van-tab v-for="(item, index) in color" :key="index" :title="item"></van-tab>
+          </van-tabs>
+        </div>
+        <div class="font inline">{{ $t("Sale.size") }}：
+          <van-tabs type="card" class="tabs3" @click="chooseModel3">
+            <van-tab v-for="(item, index) in size" :key="index" :title="item"></van-tab>
+          </van-tabs>
+        </div>
       </div>
     </div>
     <div class="buy">
       <div class="font">{{ $t("Sale.price") }}：7.5€</div>
       <div class="buy_box">
-        <div class="font number_top">{{ $t("Sale.buy_box_number") }}：<input type="number" class="number" name="points"/></div>
+        <div class="font number_top">{{ $t("Sale.buy_box_number") }}：<input v-model="sub.num" type="number" class="number" name="points"/></div>
         <div class="font" @click="buy_leave">+{{ $t("Sale.buy_tail_box") }}</div>
       </div>
       
@@ -63,6 +76,8 @@
   import price_img from '@/assets/price.png'
   import number_img from '@/assets/number.png'
   import mode_img from '@/assets/mode.jpg'
+  import { Toast } from 'vant';
+  import mode from '@/assets/mode.jpg'
     export default {
       data(){
         return{
@@ -73,6 +88,7 @@
           mode_img: mode_img,
           // 尾箱已购买或待购买显示 true 已购买 false 待购买
           leave_box_Vis: true,
+          inputumber: 0,
           model: this.$route.params.model,
           data: {
             number: 655,
@@ -103,10 +119,47 @@
               operation: 0
             },
           ],
-
+          sub: {
+            picurl: mode,
+            mode: 8333,
+            child: "I",
+            color: "红色",
+            number: 75,
+            size: "XL",
+            sale_way: "整箱",
+            num: 4
+          },
+          test: [
+              {
+                  picurl: mode,
+                  mode: 8333,
+                  child: "I",
+                  color: "红色",
+                  number: 0,
+                  size: "XL",
+                  sale_way: "整箱",
+                  num: 4
+                }
+            ],
+          //标签list
+          leab:['1','2','3'],
+          color: ['红色','蓝色','灰色'],
+          size: ['XXL','XL','L','M'],
+          cho_childLab: '',
+          cho_color: '',
+          cho_size: ''
         }
       },
       methods:{
+        chooseModel1: function(index, title) {
+          this.sub.child = this.leab[index];
+        },
+        chooseModel2: function(index, title) {
+          this.sub.color = this.color[index];
+        },
+        chooseModel3: function(index, title) {
+          this.sub.size = this.size[index];
+        },
         buy_leave: function() {
           if(this.leave_box_Vis) {
             this.leave_box_Vis = false;
@@ -115,9 +168,22 @@
           }
         },
         add_to_buy_list_data: function() {
-          // leave_box_buy_list
-          //console.log(JSON.parse(sessionStorage.getItem('dataBuy')));
+           var data = JSON.parse(localStorage.getItem('car'));
+           if(data) {
+              data = data.concat(this.sub);
+           }else {
+              data = this.test;
+           }
+           
+           localStorage.setItem('car',JSON.stringify(data));
+           Toast('添加成功');
+           //localStorage.removeItem('car');
         }
+      },
+      created() {
+        this.cho_childLab = this.leab[0];
+        this.cho_color = this.color[0];
+        this.cho_size = this.size[0];
       },
 
     }
@@ -203,5 +269,18 @@
     background-color: #696969;
     border-radius: 50px;
     color: #DCE0E6;
+  }
+  .tabs1 {
+    width: 250px;
+  }
+  .tabs2 {
+    width: 250px;
+  }
+  .tabs3 {
+    width: 270px;
+  }
+  .inline {
+    margin-top: 5px;
+    display: flex;
   }
 </style>

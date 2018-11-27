@@ -1,13 +1,13 @@
 <template>
   <div>
-    <mt-navbar v-model="selected">
+    <mt-navbar fixed v-model="selected" style="margin-top: 55px;">
       <mt-tab-item id="1">{{ $t("Sale.commodity") }}</mt-tab-item>
       <mt-tab-item id="2">{{ $t("Sale.sales_return") }}</mt-tab-item>
       <mt-tab-item id="3">{{ $t("Sale.adjust") }}</mt-tab-item>
     </mt-navbar>
     
     <!-- tab-container -->
-    <mt-tab-container v-model="selected">
+    <mt-tab-container v-model="selected" style="margin-top: 55px;">
 
       <mt-tab-container-item id="1">
         <div class="list">
@@ -65,47 +65,60 @@
           <mt-button class="query_btu" @click="query_btu" type="primary">{{ $t("Sale.query") }}</mt-button>
 
         </div>
-        <div class="boxlist">
-          <div class="full_box">{{ $t("Sale.the_whole_case") }}</div>
-        
-          <table class="tablestyle">
-            <tr class="table_head">
-              <th>{{ $t("Sale.model") }}</th>
-              <th>{{ $t("Sale.color") }}</th>
-              <th>{{ $t("Sale.number") }}</th>
-              <th>{{ $t("Sale.a_box") }}</th>
-              <th>{{ $t("Sale.price") }}</th>
-            </tr>
-            <tr v-for="(item,index) in full_box_list" :key="index">
-              <td>{{item.model}}</td>
-              <td>{{item.color}}</td>
-              <td>{{item.number}}</td>
-              <td>{{item.size}}</td>
-              <td>{{item.moner}}</td>
-            </tr>
-          </table>
 
+        <div class="return_box_list">
+          <div class="full_box_list">
 
-          <div class="full_box">{{ $t("Sale.tail_box") }}</div>
-        
-          <table class="tablestyle">
-            <tr class="table_head">
-              <th>{{ $t("Sale.model") }}</th>
-              <th>{{ $t("Sale.color") }}</th>
-              <th>{{ $t("Sale.number") }}</th>
-              <th>{{ $t("Sale.a_box") }}</th>
-              <th>{{ $t("Sale.price") }}</th>
-            </tr>
-            <tr v-for="(item,index) in leave_box_list" :key="index">
-              <td>{{item.model}}</td>
-              <td>{{item.color}}</td>
-              <td>{{item.number}}</td>
-              <td>{{item.size}}</td>
-              <td>{{item.moner}}</td>
-            </tr>
-          </table>
+            <div class="full_box_list_font">{{ $t("Sale.the_whole_case") }}</div>
+
+            <div class="table_border">
+              <div class="box_list_head">
+                <div class="width_20">{{ $t("Sale.model") }}</div>
+                <div class="width_20">{{ $t("Sale.color") }}</div>
+                <div class="width_20">{{ $t("Sale.number") }}</div>
+                <div class="width_20">{{ $t("Sale.a_box") }}</div>
+                <div class="width_20">{{ $t("Sale.price") }}</div>
+              </div>
+              <div class="box_list_body" v-for="(item,index) in full_box_list" :key="index">
+                <div class="first_border">{{item.model}}</div>
+                <div class="last_border">{{item.color}}</div>
+                <div class="last_border">{{item.number}}</div>
+                <div class="last_border">{{item.size}}</div>
+                <div class="last_border">{{item.moner}}</div>
+              </div>
+            </div>
+            
+
+          </div>
+
+          <div class="full_box_list">
+
+            <div class="full_box_list_font">{{ $t("Sale.tail_box") }}</div>
+
+            <div class="table_border">
+              <div class="box_list_head">
+                <div class="width_20">{{ $t("Sale.model") }}</div>
+                <div class="width_20">{{ $t("Sale.color") }}</div>
+                <div class="width_20">{{ $t("Sale.number") }}</div>
+                <div class="width_20">{{ $t("Sale.a_box") }}</div>
+                <div class="width_20">{{ $t("Sale.price") }}</div>
+              </div>
+              <div class="box_list_body" v-for="(item,index) in leave_box_list" :key="index">
+                <div class="first_border">{{item.model}}</div>
+                <div class="last_border">{{item.color}}</div>
+                <div class="last_border">{{item.number}}</div>
+                <div class="last_border">{{item.size}}</div>
+                <div class="last_border">{{item.moner}}</div>
+              </div>
+            </div>
+            
+
+          </div>
+
 
         </div>
+
+
 
         <mt-button class="query_btu" type="primary">ok</mt-button>
 
@@ -115,23 +128,24 @@
         popup-transition="popup-fade">
 
         <div class="query_result">
-          <!-- data source ： querydata-->
-          <table class="tablestyle">
-            <tr class="table_head">
-              <th>{{ $t("Sale.order_number") }}</th>
-              <th>{{ $t("Sale.model") }}</th>
-              <th>{{ $t("Sale.unit_price") }}</th>
-              <th>{{ $t("Sale.number") }}</th>
-              <th>{{ $t("Sale.data") }}</th>
-            </tr>
-            <tr v-for="(item,index) in querydata" :key="index">
-              <td>{{item.id}}</td>
-              <td>{{item.model}}</td>
-              <td>{{item.money}}</td>
-              <td>{{item.number}}</td>
-              <td>{{item.date}}</td>
-            </tr>
-          </table>
+
+          <div class="table_border margin_20">
+            <div class="box_list_head">
+              <div class="width_20">{{ $t("Sale.order_number") }}</div>
+              <div class="width_20">{{ $t("Sale.model") }}</div>
+              <div class="width_20">{{ $t("Sale.unit_price") }}</div>
+              <div class="width_20">{{ $t("Sale.number") }}</div>
+              <div class="width_20">{{ $t("Sale.data") }}</div>
+            </div>
+            <div class="box_list_body" v-for="(item,index) in querydata" :key="index">
+              <div class="first_border">{{item.id}}</div>
+              <div class="last_border">{{item.model}}</div>
+              <div class="last_border">{{item.money}}</div>
+              <div class="last_border">{{item.number}}</div>
+              <div class="last_border">{{item.date}}</div>
+            </div>
+          </div>
+
           <mt-button class="query_btu" @click="close_query_result" type="primary">{{ $t("Sale.confirm") }}</mt-button>
         </div>
 
@@ -393,7 +407,7 @@
     }
 </script>
 
-<style scoped>
+<style>
 .itemtop {
   cursor: pointer;
   padding-top: 30px;
@@ -404,9 +418,7 @@
 }
 .list {
   display: flex;
-  margin-top: 5px;
   overflow: scroll;
-  height: calc(100% - 140px);
 }
 .list_left {
   width: 50%;
@@ -491,5 +503,38 @@ td {
   width: 390px;
   height: 500px;
   padding: 40px;
+}
+.return_box_list {
+  overflow: auto;
+  height: 300px;
+  margin: 10px 15px;
+}
+.box_list_head {
+  display: flex;
+  background-color: #A9A9A9;
+  border: grey solid 1px;
+}
+.table_border {
+}
+.box_list_body {
+  display: flex;
+}
+.first_border {
+  /*border: grey solid 1px;*/
+  border-right: grey solid 1px;
+  border-left: grey solid 1px;
+  border-bottom: grey solid 1px;
+  width: 20%;
+}
+.width_20 {
+  width: 20%;
+}
+.last_border {
+  width: 20%;
+  border-right: grey solid 1px;
+  border-bottom: grey solid 1px;
+}
+.margin_20 {
+  margin: 0px 20px;
 }
 </style>

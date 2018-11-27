@@ -8,7 +8,7 @@
         </div>
 
         <!-- 数据展示 -->
-        <table class="showBody">
+        <!-- <table class="showBody">
           <tr>
             <th>{{ $t("Sale.model") }}</th>
             <th>{{ $t("Sale.sub_models") }}</th>
@@ -25,11 +25,34 @@
             <td>{{item.size}}</td>
             <td>{{item.sale_way}}</td>
           </tr>
-        </table>
-        <div v-if="routeForm == 1">
-          <div>{{item.settlement}}：{{item.success}}</div>
-          <div>{{item.amount}}：10000</div>
+        </table> -->
+
+        <div class="table_border">
+          <div class="box_list_head">
+            <div class="width_20">{{ $t("Sale.model") }}</div>
+            <div class="width_20">{{ $t("Sale.sub_models") }}</div>
+            <div class="width_20">{{ $t("Sale.color") }}</div>
+            <div class="width_20">{{ $t("Sale.the_quantity_of_each") }}</div>
+            <div class="width_20">{{ $t("Sale.size") }}</div>
+            <div class="width_20">{{ $t("Sale.sales_model") }}</div>
+          </div>
+          <div class="box_list_body" v-for="(item, index) in routeData" :key="index">
+            <div class="first_border">{{item.mode}}</div>
+            <div class="last_border">{{item.child}}</div>
+            <div class="last_border">{{item.color}}</div>
+            <div class="last_border">{{item.number}}</div>
+            <div class="last_border">{{item.size}}</div>
+            <div class="last_border">{{item.sale_way}}</div>
+          </div>
         </div>
+
+
+
+        <div v-if="routeForm == 1">
+          <div>{{ $t("Sale.settlement") }}：{{ $t("Sale.success") }}</div>
+          <div>{{ $t("Sale.amount") }}：10000</div>
+        </div>
+
       </div>
     </div>
 </template>
@@ -79,5 +102,28 @@
   }
   .showBody {
     width: 100%;
+  }
+  .box_list_head {
+    display: flex;
+    background-color: #A9A9A9;
+    border: grey solid 1px;
+  }
+  .width_20 {
+    width: 20%;
+  }
+  .box_list_body {
+    display: flex;
+  }
+  .first_border {
+    /*border: grey solid 1px;*/
+    border-right: grey solid 1px;
+    border-left: grey solid 1px;
+    border-bottom: grey solid 1px;
+    width: 20%;
+  }
+  .last_border {
+    width: 20%;
+    border-right: grey solid 1px;
+    border-bottom: grey solid 1px;
   }
 </style>

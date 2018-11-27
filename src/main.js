@@ -11,7 +11,7 @@ import LangZh from './lang/zh'
 
 import Vant from 'vant';
 import 'vant/lib/index.css';
-
+import 'lib-flexible'
 
 Vue.config.productionTip = false;
 Vue.prototype.$req = Api;

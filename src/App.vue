@@ -2,10 +2,10 @@
     <div id="app">
     <!-- <mt-header fixed title="欧洲服装贸易管理系统" class="head"></mt-header> -->
     <mt-header fixed title="欧洲服装贸易管理系统" class="head">
-      <router-link :to="preroute" slot="left">
+      <router-link :to="preroute" slot="left" @click="back">
         <mt-button icon="back"></mt-button>
       </router-link>
-      <mt-button @click="Shopping" v-if=" $route.path === '/Sale' || $route.path === '/Detail'" slot="right">购物车</mt-button>
+      <mt-button @click="Shopping" v-if=" $route.path === '/Sale' || $route.path === '/Detail'" slot="right"><van-icon name="cart" size='20px' /></mt-button>
     </mt-header>
 
     <div v-show="$route.path === '/ClientList'">
@@ -117,40 +117,56 @@
           
         </div>
 
-        <div class="buy_list">
-          <div v-for="(item, index) in buy_list_data" :key="index" class="buy_list_item">
-            <div class="buy_list_pic">
-              <img :src="mode" class="show_img" />
-            </div>
-            <div class="buy_list_detail">
-              <div class="buy_list_detail_font">
-                型号:{{item.mode}}
-                子型号:{{item.child}}
+        <div class="shop_area">
+          <div v-for="(item, index) in buy_list_data" :key="index">
+            <van-panel>
+              <div class="shopping_list">
+                <div class="buy_list_pic">
+                  <img :src="mode" class="show_img" />
+                </div>
+                <div class="buy_list_detail_font1">
+                  <div class="xinghao">型号:{{item.mode}}</div>
+                  <div class="zixinghao">子型号:{{item.child}}</div>
+                  <div class="yanse">颜色: {{item.color}}</div>
+                </div>
+                <div class="buy_list_detail_font2">
+                  <div class="xinghao">每箱件数:{{item.number}}</div>
+                  <div class="zixinghao">尺寸:{{item.size}}</div>
+                  <div class="yanse">销售模式:{{item.sale_way}}</div>
+                </div>
+                <div slot="footer" class="footer">
+                  <van-stepper
+                    v-model="item.num"
+                    integer
+                    :min="1"
+                    :max="1000"
+                    :step="1"
+                  />
+                </div>
+                <!-- <div class="buy_list_detail">
+                  <div class="buy_list_detail_font">
+                    型号:{{item.mode}}
+                    子型号:{{item.child}}
+                  </div>
+                  <div class="buy_list_detail_font">
+                    颜色: {{item.color}}
+                    每箱件数:{{item.number}}
+                  </div>
+                  <div class="buy_list_detail_font">
+                    尺寸:{{item.size}}
+                    销售模式:{{item.sale_way}}
+                  </div>
+                </div> -->
+                <!-- <div class="buy_list_delete">
+                  <img :src="del_img" @click="del(index)" class="del_img"/>
+                </div> -->
               </div>
-              <div class="buy_list_detail_font">
-                颜色: {{item.color}}
-                每箱件数:{{item.number}}
-              </div>
-              <div class="buy_list_detail_font">
-                尺寸:{{item.size}}
-                销售模式:{{item.sale_way}}
-              </div>
-            </div>
-            <div class="buy_list_delete">
-              <div class="step_css">
-                <van-stepper
-                  integer
-                  :min="0"
-                  :max="1000000"
-                  :step="1"
-                />
-              </div>
-              <img :src="del_img" @click="del(index)" class="del_img"/>
-            </div>
+            </van-panel>
           </div>
         </div>
-
         <div class="sub_calculater_button">
+          
+
           <mt-button name="settlement" class="settlement" @click="settlement">结算</mt-button>
           <mt-button name="reservation" class="reservation" @click="reservation">预定</mt-button>
         </div>
@@ -172,40 +188,43 @@
         },
         data: function () {
             return {
+              footer_value: 1,
               preroute: '/',//上一级路由地址
               del_img: del_img,
               mode: mode,
               number: '',
               selected: '',
               popupVisible: false,
-              buy_list_data: [{
-                  picurl: mode,
-                  mode: 8333,
-                  child: "I",
-                  color: "红色",
-                  number: 75,
-                  size: "XL",
-                  sale_way: "整箱",
-                  num: 4
-                },{
-                  picurl: mode,
-                  mode: 8333,
-                  child: "I",
-                  color: "红色",
-                  number: 75,
-                  size: "XL",
-                  sale_way: "整箱",
-                  num: 4
-                },{
-                  picurl: mode,
-                  mode: 8333,
-                  child: "I",
-                  color: "红色",
-                  number: 75,
-                  size: "XL",
-                  sale_way: "整箱",
-                  num: 4
-                }]
+              buy_list_data: [
+              // {
+              //     picurl: mode,
+              //     mode: 8333,
+              //     child: "I",
+              //     color: "红色",
+              //     number: 75,
+              //     size: "XL",
+              //     sale_way: "整箱",
+              //     num: 4
+              //   },{
+              //     picurl: mode,
+              //     mode: 8333,
+              //     child: "I",
+              //     color: "红色",
+              //     number: 75,
+              //     size: "XL",
+              //     sale_way: "整箱",
+              //     num: 4
+              //   },{
+              //     picurl: mode,
+              //     mode: 8333,
+              //     child: "I",
+              //     color: "红色",
+              //     number: 75,
+              //     size: "XL",
+              //     sale_way: "整箱",
+              //     num: 4
+              //   }
+                ]
             }
         },
         watch: {
@@ -223,10 +242,14 @@
           
         },
         methods: {
+          back: function() {
+            this.$router.back(-1);
+          },
           del: function(index) {
             alert(index);
           },
           Shopping: function() {
+            this.buy_list_data = JSON.parse(localStorage.getItem('car'));
             this.popupVisible = true;
           },
           // 结算 0
@@ -241,6 +264,18 @@
             this.popupVisible = false;
             // this.$router.push({name: 'Detail', params:{model: 1}});
             this.$router.push({name: 'setAndRes', params:{routeForm: 1, routeData: this.buy_list_data}});
+          },
+          add: function() {
+            localStorage.setItem('car',JSON.stringify(this.buy_list_data));
+          },
+          del: function() {
+            // var data = new Array();
+            // var data = JSON.parse(localStorage.getItem('car'));
+            // data = data.concat(data);
+            // console.log(data);
+            // localStorage.setItem('car',JSON.stringify(data));
+            //localStorage.removeItem('car');
+            console.log(JSON.parse(localStorage.getItem('car')));
           }
         },
         created() {
@@ -250,6 +285,15 @@
         }
     }
 </script>
+<style type="text/css">
+  html{
+    margin-top: 55px;
+    margin-bottom: 60px;
+  }
+  body{
+    margin-bottom: 60px;
+  }
+</style>
 <style lang="scss" scoped>
   @import '~@/styles/themes.scss';
   #app {
@@ -258,10 +302,7 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 60px;
-  }
-  body{
-    background: #DCDCDC;
+    height: 100%;
   }
   .head {
     width: 100%;
@@ -316,9 +357,9 @@
     overflow: auto;
   }
   .buy_list_pic {
-    height: 70px;
-    width: 70px;
-    border: black 1px solid;
+    height: 80px;
+    width: 80px;
+    margin-top: 10px;
   }
   .buy_list_detail {
     height: 70px;
@@ -333,8 +374,33 @@
     width: 66px;
     border: black 1px solid;
   }
-  .buy_list_detail_font {
+  .buy_list_detail_font1 {
     display: flex;
+    position: absolute;
+    .xinghao {
+      margin-bottom: 60px;
+      margin-left: 90px;
+    }
+    .zixinghao {
+      margin-left: 20px;
+    }
+    .yanse {
+      margin-left: 20px;
+    }
+  }
+  .buy_list_detail_font2 {
+    display: flex;
+    position: absolute;
+    .xinghao {
+      margin-bottom: 40px;
+      margin-left: 90px;
+    }
+    .zixinghao {
+      margin-left: 20px;
+    }
+    .yanse {
+      margin-left: 20px;
+    }
   }
   .number {
     width: 50px;
@@ -361,5 +427,18 @@
   }
   .step_css {
     border: red 1px solid;
+  }
+  .shopping_list {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  .footer {
+    margin: 0px 5px 10px 0px;
+  }
+  .shop_area {
+    height: 290px;
+    overflow: auto;
+    margin: 10px 0px;
   }
 </style>
