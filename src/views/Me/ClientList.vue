@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="pageall">
         <div>
             <div class="handle">
                 <mt-button type="default" @click="addbutn">增加客户</mt-button>
@@ -8,20 +8,28 @@
                 <mt-button type="default" @click="editbutn">编辑客户</mt-button>
             </div>
             <div class="Management">
-                <table border="1" cellspacing="0">
-                    <tr>
-                        <th>客户姓名</th>
-                        <th>公司名字</th>
-                        <th>客户电话</th>
-                        <th></th>
-                    </tr>
-                    <tr v-for= "(infor, index) in infors" :key="index">
-                        <td>{{infor.customer_name}}</td>
-                        <td>{{infor.company_name}}</td>
-                        <td>{{infor.customer_tele}}</td>
-                        <td><mt-button type="default">删除</mt-button></td>
-                    </tr>
-                </table>
+                <div v-for= "(infor, index) in infors" :key="index">
+                    <div class="mybody1">
+                        <div class="mybody1_box1">
+                            {{infor.customer_name}}
+                        </div>
+                    </div>
+                    <div class="mybody1">
+                        <div class="mybody1_box1">
+                            {{infor.company_name}}
+                        </div>
+                    </div>
+                    <div class="mybody1">
+                        <div class="mybody1_box1">
+                            {{infor.customer_tele}}
+                         </div>
+                     </div>
+                     <div class="mybody1">
+                            <div class="mybody1_box2">
+                                <mt-button class="mybody1_box2_mt-button" type="default">删除</mt-button>
+                            </div>
+                    </div>
+                </div>
             </div>
             <div class="Managementbut">
                 <mt-button type="default" @click="myreturn">返回</mt-button>    
@@ -157,27 +165,15 @@
     }
 </script>
 <style>
+.pageall{
+    margin: 0 auto;
+    overflow: scroll;
+    height: 700px;
+}
 .handle{
     width: 50%;
     float: left;
-    background-color: white;
     padding: 10px 0px 10px 0px;
-}
-.Management{
-    overflow: scroll;
-    height: 410px;
-    width: calc(100% - 7px);
-    padding-top: 15px;
-}
-.Management table{
-    width: 100%;
-    font-size: 20px;
-}
-.Management td{
-    height: 35px;
-}
-.Managementbut{
-    padding-top: 10px;
 }
 .AddAndEdit{
     height: 280px; 
@@ -193,5 +189,41 @@
 }
 .AddAndEditButton{
     padding-top: 15px;
+}
+.Management{
+    overflow: scroll;
+    height: 410px;
+    width: calc(100% - 7px);
+    border: 1px solid black;
+}
+.myhead{
+    width: 100%;
+}
+.myhead1{
+    float: left; 
+    width:25%;
+}
+.myhead1_box{
+    border-right: 1px solid black;
+}
+.mybody1{
+    float: left; 
+    width:25%; 
+    border-top: 1px solid black; 
+    height: 35px;
+}
+.mybody1_box1{
+    border-right: 1px solid black; 
+    height: 100%; 
+    padding-top: 8px;
+}
+.mybody1_box2{
+    padding-top: 6px;
+}
+.mybody1_box2_mt-button{
+    height: 25px;
+}
+.Managementbut{
+    padding-top: 10px;
 }
 </style>

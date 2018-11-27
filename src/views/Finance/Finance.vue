@@ -2,59 +2,84 @@
     <div>
         <div class="page-navbar">
             <mt-navbar class="page-part" v-model="selected">
-              <mt-tab-item id="1"><span>销售清单</span></mt-tab-item>
+              <mt-tab-item id="1"><span>{{ $t("finance.saleslis") }}</span></mt-tab-item>
               <mt-tab-item id="2"><span>资金流水</span></mt-tab-item>
               <mt-tab-item id="3"><span>销售趋势</span></mt-tab-item>
             </mt-navbar>
             <!-- tabcontainer -->
             <div class="TheTable">
                 <mt-tab-container v-model="selected">
-                  <mt-tab-container-item id="1">
+                    <!-- 销售清单 -->
+                    <mt-tab-container-item id="1">
                     <div class="firsttable">
-                        <table border="1" cellspacing="0">
-                            <tr>
-                                <div class="myhead">
-                                    <div style="width: 40%; float: left;">销售单号</div>
-                                    <div style="width: 40%; float: left;">商品信息</div>
-                                    <div style="width: 20%; float: left;">数量</div>
-                                </div>
-                            </tr>
-                            <div v-for= "(item, index) in items" :key="index">
-                                <tr>
-                                    <td class="num1">
-                                        <span>单号: </span>
-                                        <span>{{item.sale_num}}</span>
-                                        <span>客户: {{item.customer_name}}</span>
-                                        <span>电话: {{item.customer_phone}}</span>
-                                        <span>状态: {{item.sale_state}}</span>
-                                        <span>日期: {{item.sale_date}}</span>
-                                    </td>
-                                    <td class="num1">
-                                        <span>型号： {{item.product_model}} 子型号： {{item.product_submodel}}</span>
-                                        <span>颜色： {{item.product_color}} 尺寸： {{item.product_size}}</span>
-                                        <span>每箱： {{item.per}} 类型： {{item.type}}</span>
-                                    </td>
-                                    <td class="num2">
-                                        <span>{{item.quantity}}</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="num1"></td>
-                                    <td class="num1">
-                                        <span>型号： {{item.product_model}} 子型号： {{item.product_submodel}}</span>
-                                        <span>颜色： {{item.product_color}} 尺寸： {{item.product_size}}</span>
-                                        <span>每箱： {{item.per}} 类型： {{item.thetype}}</span>
-                                    </td>
-                                    <td class="num2">
-                                        <span>{{item.quantity}}</span>
-                                    </td>
-                                </tr>
+                        <div class="myhead">
+                            <div class="myhead_box1">
+                                <div class="myhead_boxname1">销售单号</div>
                             </div>
-                        </table>
+                            <div class="myhead_box1">
+                                <div class="myhead_boxname1">商品信息</div>
+                            </div>
+                            <div class="myhead_box2">
+                                <div class="myhead_boxname2">数量</div>
+                            </div>
+                        </div>
+                        <div v-for= "(item, index) in items" :key="index">
+                            <div class="mybody_box1">
+                                <div class="mybody_inbox1">
+                                    <span>
+                                        单号: {{item.sale_num}}<br>
+                                        客户: {{item.customer_name}}<br>
+                                        电话: {{item.customer_phone}}<br>
+                                        状态: {{item.sale_state}}<br>
+                                        日期: {{item.sale_date}}<br>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mybody_box1">
+                                <div class="mybody_inbox1">
+                                    <span>
+                                        型号： {{item.product_model}}<br>
+                                        子型号： {{item.product_submodel}}<br>
+                                        颜色： {{item.product_color}}<br>
+                                        尺寸： {{item.product_size}}<br>
+                                        每箱： {{item.per}} <br>
+                                        类型： {{item.type}}<br>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mybody_box2">
+                                <div class="mybody_inbox2">
+                                    <span>{{item.quantity}}</span>
+                                </div>
+                            </div>
+                            <div class="mybody_box1">
+                                <div class="mybody_inbox1">
+                                    
+                                </div>
+                            </div>
+                            <div class="mybody_box1">
+                                <div class="mybody_inbox1">
+                                    <span>
+                                        型号： {{item.product_model}}<br>
+                                        子型号： {{item.product_submodel}}<br>
+                                        颜色： {{item.product_color}}<br>
+                                        尺寸： {{item.product_size}}<br>
+                                        每箱： {{item.per_tial}} <br>
+                                        类型： {{item.thetype}}<br>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mybody_box2">
+                                <div class="mybody_inbox2">
+                                    <span>{{item.quantity_tail}}</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </mt-tab-container-item>
-                  <mt-tab-container-item id="2">
-                    <div>
+                    </mt-tab-container-item>
+                  <!-- 基金流水 -->
+                    <mt-tab-container-item id="2">
+                    <div class="selectbutton">
                         <div class="TheSelect">
                             <select>
                                 <option v-for="(select, index) in selects" :key="index">{{select.selecting}}</option>
@@ -65,28 +90,53 @@
                         </div>
                     </div>
                     <div class="CapitalFlow">
-                        <table border="1" cellspacing="0">
-                            <tr>
-                                <th>日期</th>
-                                <th>客户</th>
-                                <th>金额</th>
-                                <th>备注</th>
-                            </tr>
-                            <tr v-for= "(capotal, index) in capotals" :key="index">
-                                <td>{{capotal.account_in_date}}</td>
-                                <td>{{capotal.customer_name}}</td>
-                                <td>{{capotal.sum}}</td>
-                                <td>{{capotal.content}}</td>
-                            </tr>
-                        </table>
+                        <div class="myhead">
+                            <div class="myhead1">
+                                <div class="myhead1_box">日期</div>
+                            </div>
+                            <div class="myhead1">
+                                <div class="myhead1_box">客户</div>
+                            </div>
+                            <div class="myhead1">
+                                <div class="myhead1_box">金额</div>
+                            </div>
+                            <div class="myhead1">
+                                <div>备注</div>
+                            </div>
+                        </div>
+                        <div v-for= "(capotal, index) in capotals" :key="index">
+                            <div class="mybody1">
+                                <div class="mybody1_box1">
+                                    {{capotal.account_in_date}}
+                                </div>
+                            </div>
+                            <div class="mybody1">
+                                <div class="mybody1_box1">
+                                    {{capotal.customer_name}}
+                                </div>
+                            </div>
+                            <div class="mybody1">
+                                <div class="mybody1_box1">
+                                    {{capotal.sum}}
+                                </div>
+                            </div>
+                            <div class="mybody1">
+                                <div class="mybody1_box2">
+                                    {{capotal.content}}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="CapitalFlowWhole">
-                        <span>合计: {{allmoney}}</span>
-                        <span>到账: {{arrmoney}}</span>
-                        <span>应付: {{facmoney}}</span>
+                        <span>
+                            合计: {{allmoney}}
+                            到账: {{arrmoney}}
+                            应付: {{facmoney}}
+                        </span>
                     </div>
-
                   </mt-tab-container-item >
+
+                  <!-- 销售趋势 -->
                   <mt-tab-container-item id="3">
                     <div class="SalesTrend">
                         <div class="SetSalesTrend">
@@ -97,18 +147,38 @@
                         </div>
                     </div>
                     <div class="SalesTrendInformation">
-                        <table border="1" cellspacing="0">
-                            <tr>
-                                <th>商品型号/客户姓名</th>
-                                <th>商品信息/客户电话</th>
-                                <th>选择状态</th>
-                            </tr>
-                            <tr v-for= "(trend, index) in trends" :key="index">
-                                <td>{{trend.ModelAndName}}</td>
-                                <td>{{trend.InforAndPhone}}</td>
-                                <td>{{trend.SelectState}}</td>
-                            </tr>
-                        </table>
+                        <div class="myhead2">
+                            <div class="myhead2_box1">
+                                <div class="myhead2_boxname1">商品型号/客户姓名</div>
+                            </div>
+                            <div class="myhead2_box1">
+                                <div class="myhead2_boxname1">商品信息/客户电话</div>
+                            </div>
+                            <div class="myhead2_box2">
+                                <div class="myhead2_boxname2">选择状态</div>
+                            </div>
+                        </div>
+                         <div v-for= "(trend, index) in trends" :key="index">
+                            <div class="mybody2_box1">
+                                <div class="mybody2_inbox1">
+                                    <span>
+                                        {{trend.ModelAndName}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mybody2_box1">
+                                <div class="mybody2_inbox1">
+                                    <span>
+                                        {{trend.InforAndPhone}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mybody2_box2">
+                                <div class="mybody2_inbox2">
+                                    <span>{{trend.SelectState}}</span>
+                                </div>
+                            </div>
+                        </div>                       
                     </div>
                      <div class="MySalesTrend">
                         <mt-button type="default">显示趋势</mt-button>
@@ -130,7 +200,7 @@
     export default {
         data() {
             return {
-                selected: '1',
+                selected: '3',
                 theMaxHeight: '',
                 theFirstHeight: '',
                 theSecondHeight: '',
@@ -148,9 +218,11 @@
                     per: '75件',
                     type: '整箱',
                     quantity: '6',
+                    per_tial: '34件',
                     thetype: '尾箱',
+                    quantity_tail: '2',
                 },{
-                   sale_num: '20180101SSDASD',
+                    sale_num: '20180101SSDASD',
                     customer_name: 'Vittotio',
                     customer_phone: '39************',
                     sale_state: '待出货',
@@ -162,9 +234,11 @@
                     per: '75件',
                     type: '整箱',
                     quantity: '6',
+                    per_tial: '34件',
                     thetype: '尾箱',
+                    quantity_tail: '2',
                 },{
-                   sale_num: '20180101SSDASD',
+                    sale_num: '20180101SSDASD',
                     customer_name: 'Vittotio',
                     customer_phone: '39************',
                     sale_state: '待出货',
@@ -176,9 +250,11 @@
                     per: '75件',
                     type: '整箱',
                     quantity: '6',
+                    per_tial: '34件',
                     thetype: '尾箱',
+                    quantity_tail: '2',
                 },{
-                   sale_num: '20180101SSDASD',
+                    sale_num: '20180101SSDASD',
                     customer_name: 'Vittotio',
                     customer_phone: '39************',
                     sale_state: '待出货',
@@ -190,7 +266,9 @@
                     per: '75件',
                     type: '整箱',
                     quantity: '6',
+                    per_tial: '34件',
                     thetype: '尾箱',
+                    quantity_tail: '2',
                 }],
                 trends:[{
                     ModelAndName: '8333/Vittorio',
@@ -314,6 +392,7 @@
 .page-navbar{
     margin: 0 auto;
     overflow: scroll;
+    height: 700px;
 }
 .page-part span{
     font-size: 18px;
@@ -321,52 +400,62 @@
 .TheTable{
     padding-top: 10px;
 }
-.myhead{
-    height: 20px;
-    background-color: #A9A9A9;
-}
 .firsttable{
-    overflow: scroll;
+    overflow: auto;
     height: 480px;
     width: calc(100% - 7px);
     border: 1px solid black;
 }
-.TheFinanceID{
-    margin: 0px;
-    width: 39%; 
-    background-color: white; 
-    float: left;
-    white-space:normal;
-    word-break:break-all;
-    word-wrap:break-word;
-}
-.TheFinanceID span{
-    float: left;
-}
-.TheShopImformation{
-    width: 39.5%; 
-    background-color: white; 
-    float: left;
-}
-.TheNumber{
-    width: 19%; 
-    background-color: white; 
-    float: left;
-}
-.num1{
-    width: 40%;
-}
-.num2{
-    width: 20%;
-}
-.SalesTrend{
+.myhead{
     width: 100%;
-    background-color: white;
+    height: 20px;
+}
+.myhead_box1{
+    width: 40%; 
+    float: left; 
+    background-color: #A9A9A9;
+}
+.myhead_box2{
+    width: 20%; 
+    float: left; 
+    background-color: #A9A9A9
+}
+.myhead_boxname1{
+    width: 99%; 
+    border-right: 1px solid black;
+}
+.myhead_boxname2{
+    width: 99%; 
+}
+.mybody_box1{
+    width: 40%; 
+    float: left; 
+    height: 140px; 
+    border-top: 1px solid black;
+}
+.mybody_box2{
+    width: 20%; 
+    float: left; 
+    height: 140px;
+    border-top: 1px solid black;
+}
+.mybody_inbox1{
+    border-right: 1px solid black; 
+    height: 100%; 
+    padding: 6px 0;
+}
+.mybody_inbox2{
+    padding: 60px 0;
+}
+
+.selectbutton{
+    width: calc(100% - 5px);
 }
 .TheSelect{
     width: 60%;
     float: left;
     padding: 10px 0px 20px 0px;
+    background-color: #dce0e6;
 }
 .TheSelect select{
     width: 150px;
@@ -378,9 +467,10 @@
 }
 .TheSelectButton{
     width: 40%;
-    background-color: white;
     float: left;
     padding: 10px 0px 20px 0px;
+    border: 50px;
+    background-color: #dce0e6;
 }
 .CapitalFlow{
     overflow: scroll;
@@ -388,12 +478,26 @@
     width: calc(100% - 7px);
     border: 1px solid black;
 }
-.CapitalFlow table{
-    width: 100%;
-    font-size: 20px;
+.myhead1{
+    float: left; 
+    width:25%;
 }
-.CapitalFlow td{
-    height: 45px;
+.myhead1_box{
+    border-right: 1px solid black;
+}
+.mybody1{
+    float: left; 
+    width:25%; 
+    border-top: 1px solid black; 
+    height: 35px;
+}
+.mybody1_box1{
+    border-right: 1px solid black; 
+    height: 100%; 
+    padding-top: 8px;
+}
+.mybody1_box2{
+    padding-top: 8px;
 }
 .CapitalFlowWhole{
     width: calc(100% - 5px);
@@ -404,6 +508,53 @@
 .CapitalFlowWhole span{
     top:10px;
     position: relative;
+}
+.myhead2{
+    
+}
+.myhead2_box1{
+    width: 40%; 
+    float: left;
+    height: 20px;
+    background-color: #F5F6F7;
+}
+.myhead2_box2{
+    width: 20%; 
+    float: left; 
+    height: 20px;
+    background-color: #F5F6F7;
+}
+.myhead2_boxname1{
+    width: 99%; 
+    border-right: 1px solid black;
+}
+.myhead2_boxname2{
+    width: 99%; 
+}
+.mybody2_box1{
+    width: 40%; 
+    float: left; 
+    height: 35px; 
+    border-top: 1px solid black;
+}
+.mybody2_box2{
+    width: 20%; 
+    float: left; 
+    height: 35px;
+    border-top: 1px solid black;
+}
+.mybody2_inbox1{
+    border-right: 1px solid black; 
+    height: 100%; 
+    padding: 6px 0;
+}
+.mybody2_inbox2{
+    padding: 6px 0;
+}
+
+.SalesTrend{
+    width: 100%;
+    background-color: white;
 }
 .SetSalesTrend{
     width: 50%;
@@ -416,12 +567,6 @@
     height: 180px;
     width: calc(100% - 7px);
     border: 1px solid black;
-}
-.SalesTrendInformation th{
-    height: 50px;    
-}
-.SalesTrendInformation td{
-    height: 50px;
 }
 .MySalesTrend{
     width: 100%;

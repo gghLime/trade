@@ -56,5 +56,10 @@ export default{
     // Sale页面
     Sale: {
         commodity: '商品',
+    },
+
+    //Finance页面
+    finance: {
+        saleslis: '销售清单',
     }
 }
