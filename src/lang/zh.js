@@ -93,5 +93,51 @@ export default{
     //Finance页面
     finance: {
         saleslis: '销售清单',
+        capitalflow: '资金流水',
+        salestrend: '销售趋势',
+        saleno: '销售单号',
+        commodityinformation: '商品信息',
+        number: '数量',
+        oddnumbers: '单号',
+        customer: '客户',
+        Telephone: '电话',
+        state: '状态',
+        data: '日期',
+        model: '型号',
+        submodel: '子型号',
+        color: '颜色',
+        size: '尺寸',
+        eachbox: '每箱',
+        type: '类型',
+        issure: '确定',
+        money: '金额',
+        remarks: '备注',
+        total: '合计',
+        arrivalaccount: '到账',
+        copewith: '应付',
+        selectcustomers: '选择客户',
+        choosecommodity: '选择商品',
+        merchandisemodel: '商品型号',
+        customername: '客户姓名',
+        mycommodityinformation: '商品信息',
+        customertelephone: '客户电话',
+        selectionstate: '选择状态',
+        displaytrend: '显示趋势',
+    },
+
+    //ClientList
+    clientList: {
+        increasecustomer: '增加客户',
+        editclient: '编辑客户',
+        deleteL: '删除',
+        thereturn: '返回',
+    },
+
+    //StaffList
+    staffliat:{
+        increasestafff: '增加员工',
+        editorialstaff: '编辑员工',
+        deleteL: '删除',
+        thereturn: '返回',
     }
 }

@@ -2,43 +2,43 @@
     <div class="pageall">
         <div>
             <div class="handle">
-                <mt-button type="default" @click="addbutn">增加员工</mt-button>
+                <mt-button type="primary" @click="addbutn">{{ $t("staffliat.increasestafff") }}</mt-button>
             </div>
             <div class="handle">
-                <mt-button type="default" @click="editbutn">编辑员工</mt-button>
+                <mt-button type="primary" @click="editbutn">{{ $t("staffliat.editorialstaff") }}</mt-button>
             </div>
             <div class="Management">
-                <div v-for= "(infor, index) in infors" :key="index">
-                    <div class="mybody1">
-                        <div class="mybody1_box1">
-                            {{infor.staff_num}}
+                <div v-for= "(infor, index) in infors" :key="index" @click="showsta(index, infor)">
+                    <div class="staffliatbody">
+                        <div class="staffliatbody_box1" v-bind:class="{ active: index == stind}">
+                            <span>{{infor.staff_num}}</span>
                         </div>
                     </div>
-                    <div class="mybody1">
-                        <div class="mybody1_box1">
-                            {{infor.staff_name}}
+                    <div class="staffliatbody">
+                        <div class="staffliatbody_box1" v-bind:class="{ active: index == stind}">
+                            <span>{{infor.staff_name}}</span>
                         </div>
                     </div>
-                    <div class="mybody1">
-                        <div class="mybody1_box1">
-                            {{infor.staff_tele}}
+                    <div class="staffliatbody">
+                        <div class="staffliatbody_box1" v-bind:class="{ active: index == stind}">
+                            <span>{{infor.staff_tele}}</span>
                          </div>
                      </div>
-                     <div class="mybody1">
-                            <div class="mybody1_box2">
-                                <mt-button class="mybody1_box2_mt-button" type="default">删除</mt-button>
+                     <div class="staffliatbody">
+                            <div class="staffliatbody_box2" v-bind:class="{ active: index == stind}">
+                                <mt-button class="mybody1_box2_mt-button" type="default" @click="deletesta(index)">{{ $t("staffliat.deleteL") }}</mt-button>
                             </div>
                     </div>
                 </div>
             </div>
             <div class="Managementbut">
-                <mt-button type="default" @click="myreturn">返回</mt-button>    
+                <mt-button class="clientListreturn" type="primary" @click="returnme">{{ $t("staffliat.thereturn") }}</mt-button>   
             </div>
         </div>
         <mt-popup v-model="addasideView" position="relative" popup-transition="popup-fade">
             <div class="AddAndEdit">
                 <div class="AddAndEditHead">
-                    <h1>增加员工</h1>
+                    <h1>{{ $t("staffliat.increasestafff") }}</h1>
                 </div>
                 <div>
                     <mt-field label="员工工号" placeholder="请输入员工工号" v-model="username"></mt-field>
@@ -58,12 +58,12 @@
         <mt-popup v-model="editasideView" position="relative" popup-transition="popup-fade">
             <div class="AddAndEdit">
                 <div class="AddAndEditHead">
-                    <h1>编辑员工</h1>
+                    <h1>{{ $t("staffliat.editorialstaff") }}</h1>
                 </div>
                 <div>
-                    <mt-field label="员工工号" placeholder="请输入员工工号" v-model="username"></mt-field>
-                    <mt-field label="员工姓名" placeholder="请输入员工姓名" v-model="username"></mt-field>
-                    <mt-field label="员工电话" placeholder="请输入员工电话" v-model="username"></mt-field>
+                    <mt-field label="员工工号" v-model="stafid"></mt-field>
+                    <mt-field label="员工姓名" v-model="stafname"></mt-field>
+                    <mt-field label="员工电话" v-model="staftele"></mt-field>
                 </div>
                 <div class="AddAndEditButton">
                     <div class="handle">
@@ -86,6 +86,10 @@
             return {
                 addasideView: false,
                 editasideView: false,
+                stind: -1,
+                staid: '',
+                staname: '',
+                statele: '',
                 infors:[{
                     staff_num: '372423001',
                     staff_name: 'Vittorio',
@@ -154,7 +158,14 @@
                 this.addasideView = true;
             },
             editbutn: function(){
-                this.editasideView = true;
+                if(this.stind == -1){
+                    alert("请选择要编辑的员工");
+                }else{
+                    this.editasideView = true;
+                    this.stafid = this.staid;
+                    this.stafname = this.staname;
+                    this.staftele = this.statele;
+                }
             },
             confirm: function(){
                 this.addasideView = false;
@@ -164,8 +175,17 @@
                 this.addasideView = false;
                 this.editasideView = false;
             },
-            myreturn: function(){
+            returnme: function(){
                 this.$router.push('/Me');
+            },
+            showsta: function(index, infor){
+                this.stind = index;
+                this.staid = infor.customer_name;
+                this.staname = infor.company_name;
+                this.statele = infor.customer_tele;
+            },
+            deletesta: function(index){
+                this.infors.splice(index,1);
             },
         },
         created() {
@@ -218,24 +238,35 @@
 .myhead1_box{
     border-right: 1px solid black;
 }
-.mybody1{
+.staffliatbody{
     float: left; 
     width:25%; 
-    border-top: 1px solid black; 
+    border-bottom: 1px solid black; 
     height: 35px;
 }
-.mybody1_box1{
+.staffliatbody_box1{
     border-right: 1px solid black; 
     height: 100%; 
-    padding-top: 8px;
 }
-.mybody1_box2{
+.staffliatbody_box1 span{
+    top: 10px;
+    position: relative;
+}
+.staffliatbody_box2{
     padding-top: 6px;
+    height: 29px;
 }
 .mybody1_box2_mt-button{
     height: 25px;
 }
 .Managementbut{
     padding-top: 10px;
+}
+.clientListreturn{
+    width: 300px;
+    border-radius: 3em;
+}
+.active {
+    background: #87CEEB !important;
 }
 </style>

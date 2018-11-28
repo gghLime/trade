@@ -3,8 +3,8 @@
         <div class="page-navbar">
             <mt-navbar class="page-part" v-model="selected">
               <mt-tab-item id="1"><span>{{ $t("finance.saleslis") }}</span></mt-tab-item>
-              <mt-tab-item id="2"><span>资金流水</span></mt-tab-item>
-              <mt-tab-item id="3"><span>销售趋势</span></mt-tab-item>
+              <mt-tab-item id="2"><span>{{ $t("finance.capitalflow") }}</span></mt-tab-item>
+              <mt-tab-item id="3"><span>{{ $t("finance.salestrend") }}</span></mt-tab-item>
             </mt-navbar>
             <!-- tabcontainer -->
             <div class="TheTable">
@@ -14,36 +14,36 @@
                     <div class="firsttable">
                         <div class="myhead">
                             <div class="myhead_box1">
-                                <div class="myhead_boxname1">销售单号</div>
+                                <div class="myhead_boxname1">{{ $t("finance.saleno") }}</div>
                             </div>
                             <div class="myhead_box1">
-                                <div class="myhead_boxname1">商品信息</div>
+                                <div class="myhead_boxname1">{{ $t("finance.commodityinformation") }}</div>
                             </div>
                             <div class="myhead_box2">
-                                <div class="myhead_boxname2">数量</div>
+                                <div class="myhead_boxname2">{{ $t("finance.number") }}</div>
                             </div>
                         </div>
                         <div v-for= "(item, index) in items" :key="index">
                             <div class="mybody_box1">
                                 <div class="mybody_inbox1">
                                     <span>
-                                        单号: {{item.sale_num}}<br>
-                                        客户: {{item.customer_name}}<br>
-                                        电话: {{item.customer_phone}}<br>
-                                        状态: {{item.sale_state}}<br>
-                                        日期: {{item.sale_date}}<br>
+                                        {{ $t("finance.oddnumbers") }}: {{item.sale_num}}<br>
+                                        {{ $t("finance.customer") }}: {{item.customer_name}}<br>
+                                        {{ $t("finance.Telephone") }}: {{item.customer_phone}}<br>
+                                        {{ $t("finance.state") }}: {{item.sale_state}}<br>
+                                        {{ $t("finance.data") }}: {{item.sale_date}}<br>
                                     </span>
                                 </div>
                             </div>
                             <div class="mybody_box1">
                                 <div class="mybody_inbox1">
                                     <span>
-                                        型号： {{item.product_model}}<br>
-                                        子型号： {{item.product_submodel}}<br>
-                                        颜色： {{item.product_color}}<br>
-                                        尺寸： {{item.product_size}}<br>
-                                        每箱： {{item.per}} <br>
-                                        类型： {{item.type}}<br>
+                                        {{ $t("finance.model") }}： {{item.product_model}}<br>
+                                        {{ $t("finance.submodel") }}： {{item.product_submodel}}<br>
+                                        {{ $t("finance.color") }}： {{item.product_color}}<br>
+                                        {{ $t("finance.size") }}： {{item.product_size}}<br>
+                                        {{ $t("finance.eachbox") }}： {{item.per}} <br>
+                                        {{ $t("finance.type") }}： {{item.type}}<br>
                                     </span>
                                 </div>
                             </div>
@@ -60,12 +60,12 @@
                             <div class="mybody_box1">
                                 <div class="mybody_inbox1">
                                     <span>
-                                        型号： {{item.product_model}}<br>
-                                        子型号： {{item.product_submodel}}<br>
-                                        颜色： {{item.product_color}}<br>
-                                        尺寸： {{item.product_size}}<br>
-                                        每箱： {{item.per_tial}} <br>
-                                        类型： {{item.thetype}}<br>
+                                        {{ $t("finance.model") }}： {{item.product_model}}<br>
+                                        {{ $t("finance.submodel") }}： {{item.product_submodel}}<br>
+                                        {{ $t("finance.color") }}： {{item.product_color}}<br>
+                                        {{ $t("finance.size") }}： {{item.product_size}}<br>
+                                        {{ $t("finance.eachbox") }}： {{item.per_tial}} <br>
+                                        {{ $t("finance.type") }}： {{item.thetype}}<br>
                                     </span>
                                 </div>
                             </div>
@@ -86,52 +86,52 @@
                             </select>
                         </div>
                         <div class="TheSelectButton">
-                            <mt-button type="default">确定</mt-button>
+                            <mt-button class="TheSelectButton_button" type="primary">{{ $t("finance.issure") }}</mt-button>
                         </div>
                     </div>
                     <div class="CapitalFlow">
-                        <div class="myhead">
+                        <div class="myhead0">
                             <div class="myhead1">
-                                <div class="myhead1_box">日期</div>
+                                <div class="myhead1_box">{{ $t("finance.data") }}</div>
                             </div>
                             <div class="myhead1">
-                                <div class="myhead1_box">客户</div>
+                                <div class="myhead1_box">{{ $t("finance.customer") }}</div>
                             </div>
                             <div class="myhead1">
-                                <div class="myhead1_box">金额</div>
+                                <div class="myhead1_box">{{ $t("finance.money") }}</div>
                             </div>
                             <div class="myhead1">
-                                <div>备注</div>
+                                <div class="myhead2_box">{{ $t("finance.remarks") }}</div>
                             </div>
                         </div>
                         <div v-for= "(capotal, index) in capotals" :key="index">
                             <div class="mybody1">
                                 <div class="mybody1_box1">
-                                    {{capotal.account_in_date}}
+                                    <span>{{capotal.account_in_date}}</span>
                                 </div>
                             </div>
                             <div class="mybody1">
                                 <div class="mybody1_box1">
-                                    {{capotal.customer_name}}
+                                    <span>{{capotal.customer_name}}</span>
                                 </div>
                             </div>
                             <div class="mybody1">
                                 <div class="mybody1_box1">
-                                    {{capotal.sum}}
+                                    <span>{{capotal.sum}}</span>
                                 </div>
                             </div>
                             <div class="mybody1">
                                 <div class="mybody1_box2">
-                                    {{capotal.content}}
+                                    <span>{{capotal.content}}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="CapitalFlowWhole">
                         <span>
-                            合计: {{allmoney}}
-                            到账: {{arrmoney}}
-                            应付: {{facmoney}}
+                            {{ $t("finance.remarks") }}: {{allmoney}}
+                            {{ $t("finance.arrivalaccount") }}: {{arrmoney}}
+                            {{ $t("finance.copewith") }}: {{facmoney}}
                         </span>
                     </div>
                   </mt-tab-container-item >
@@ -140,22 +140,82 @@
                   <mt-tab-container-item id="3">
                     <div class="SalesTrend">
                         <div class="SetSalesTrend">
-                            <mt-button type="default">选择客户</mt-button>
+                            <mt-button class="selectbut" type="primary" @click="CusBut">{{ $t("finance.selectcustomers") }}</mt-button>
                         </div>
                         <div class="SetSalesTrend">
-                            <mt-button type="default">选择商品</mt-button>
+                            <mt-button class="selectbut" type="primary" @click="CusBut">{{ $t("finance.choosecommodity") }}</mt-button>
                         </div>
                     </div>
+                    <mt-popup v-model="SelectCustomers" position="bottom" popup-transition="popup-fade"
+                    class="thepopup">
+                        <div class="popuphead">
+                            <div>
+                                <div class="popupinhead">
+                                    <div class="popupinheadin">
+                                        {{ $t("finance.customername") }}
+                                    </div>
+                                </div>
+                                <div class="popupinhead">
+                                    <div class="popupinheadin">
+                                        {{ $t("finance.customertelephone") }}
+                                    </div>
+                                </div>
+                                <div class="popupinhead">
+                                    <div class="popupinheadin">
+                                        {{ $t("finance.merchandisemodel") }}
+                                    </div>
+                                </div>
+                                <div class="popupinhead">
+                                    <div>
+                                        {{ $t("finance.mycommodityinformation") }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-for= "(customer, index) in customers" :key="index">
+                                <div class="popupbody">
+                                    <div class="popupinbody1">
+                                        <span>
+                                            {{customer.name}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="popupbody">
+                                    <div class="popupinbody1">
+                                        <span>
+                                            {{customer.phone}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="popupbody">
+                                    <div class="popupinbody1">
+                                        <span>
+                                            {{customer.mode}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="popupbody">
+                                    <div class="popupinbody2">
+                                        <span>
+                                            {{customer.information}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="popupbut">
+                            <mt-button class="trendbut" type="primary" @click="myreturn">{{ $t("finance.issure") }}</mt-button>
+                        </div>
+                    </mt-popup>
                     <div class="SalesTrendInformation">
                         <div class="myhead2">
                             <div class="myhead2_box1">
-                                <div class="myhead2_boxname1">商品型号/客户姓名</div>
+                                <div class="myhead2_boxname1">{{ $t("finance.merchandisemodel") }}/{{ $t("finance.customername") }}</div>
                             </div>
                             <div class="myhead2_box1">
-                                <div class="myhead2_boxname1">商品信息/客户电话</div>
+                                <div class="myhead2_boxname1">{{ $t("finance.mycommodityinformation") }}/{{ $t("finance.customertelephone") }}</div>
                             </div>
                             <div class="myhead2_box2">
-                                <div class="myhead2_boxname2">选择状态</div>
+                                <div class="myhead2_boxname2">{{ $t("finance.selectionstate") }}</div>
                             </div>
                         </div>
                          <div v-for= "(trend, index) in trends" :key="index">
@@ -175,13 +235,13 @@
                             </div>
                             <div class="mybody2_box2">
                                 <div class="mybody2_inbox2">
-                                    <span>{{trend.SelectState}}</span>
+                                    <input type="checkbox" name="">
                                 </div>
                             </div>
                         </div>                       
                     </div>
                      <div class="MySalesTrend">
-                        <mt-button type="default">显示趋势</mt-button>
+                        <mt-button class="trendbut" type="primary">{{ $t("finance.displaytrend") }}</mt-button>
                     </div>
                     <div class="SalesTrendInformation">
                        
@@ -205,6 +265,7 @@
                 theFirstHeight: '',
                 theSecondHeight: '',
                 theThirdHeight: '',
+                SelectCustomers: false,
                 items: [{
                     sale_num: '20180101SSDASD',
                     customer_name: 'Vittotio',
@@ -291,6 +352,30 @@
                     InforAndPhone: '75(件/箱)/39******',
                     SelectState: 'ok',
                 }],
+                customers:[{
+                    name: 'Vittorio',
+                    phone: '39******',
+                    mode: '8333',
+                    information: '75(件/箱)',
+                },
+                {
+                    name: 'Vittorio',
+                    phone: '39******',
+                    mode: '8333',
+                    information: '75(件/箱)',
+                },
+                {
+                    name: 'Vittorio',
+                    phone: '39******',
+                    mode: '8333',
+                    information: '75(件/箱)',
+                },
+                {
+                    name: 'Vittorio',
+                    phone: '39******',
+                    mode: '8333',
+                    information: '75(件/箱)',
+                },],
                 selects:[{
                     selecting: '所有人',
                 },{
@@ -381,10 +466,16 @@
                 allmoney: '-2000',
                 arrmoney: '12700',
                 facmoney: '-14700',
+                
             }
         },
         methods:{
-            
+            CusBut: function(){
+                this.SelectCustomers = true;
+            },
+            myreturn: function(){
+                this.SelectCustomers = false;
+            },
         },
     }
 </script>
@@ -408,17 +499,18 @@
 }
 .myhead{
     width: 100%;
-    height: 20px;
 }
 .myhead_box1{
     width: 40%; 
     float: left; 
-    background-color: #A9A9A9;
+    background-color: #F5F6F7;
+    border-bottom: 1px solid black;
 }
 .myhead_box2{
     width: 20%; 
     float: left; 
-    background-color: #A9A9A9
+    background-color: #F5F6F7;
+    border-bottom: 1px solid black;
 }
 .myhead_boxname1{
     width: 99%; 
@@ -431,21 +523,29 @@
     width: 40%; 
     float: left; 
     height: 140px; 
-    border-top: 1px solid black;
+    border-bottom: 1px solid black;
 }
 .mybody_box2{
     width: 20%; 
     float: left; 
     height: 140px;
-    border-top: 1px solid black;
+    border-bottom: 1px solid black;
 }
 .mybody_inbox1{
     border-right: 1px solid black; 
     height: 100%; 
-    padding: 6px 0;
+    padding: 1px 0;
+}
+.mybody_inbox1 span{
+    top: 5px;
+    position: relative;
 }
 .mybody_inbox2{
-    padding: 60px 0;
+   
+}
+.mybody_inbox2 span{
+    top: 60px;
+    position: relative;
 }
 
 .selectbutton{
@@ -456,6 +556,10 @@
     float: left;
     padding: 10px 0px 20px 0px;
     background-color: #dce0e6;
+}
+.selectbut{
+    width: 150px;
+    border-radius: 3em;
 }
 .TheSelect select{
     width: 150px;
@@ -472,11 +576,18 @@
     border: 50px;
     background-color: #dce0e6;
 }
+.TheSelectButton_button{
+    border-radius: 3em; 
+    width: 100px;
+}
 .CapitalFlow{
     overflow: scroll;
     height: 380px;
     width: calc(100% - 7px);
     border: 1px solid black;
+}
+.myhead0{
+    width: 100%;
 }
 .myhead1{
     float: left; 
@@ -484,20 +595,31 @@
 }
 .myhead1_box{
     border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+.myhead2_box{
+    border-bottom: 1px solid black;
 }
 .mybody1{
     float: left; 
-    width:25%; 
-    border-top: 1px solid black; 
+    width:25%;  
     height: 35px;
+    border-bottom: 1px solid black;
 }
 .mybody1_box1{
-    border-right: 1px solid black; 
+    border-right: 1px solid black;
     height: 100%; 
-    padding-top: 8px;
+}
+.mybody1_box1 span{
+    top: 10px;
+    position: relative;
 }
 .mybody1_box2{
-    padding-top: 8px;
+    
+}
+.mybody1_box2 span{
+    top: 8px;
+    position: relative;
 }
 .CapitalFlowWhole{
     width: calc(100% - 5px);
@@ -509,6 +631,7 @@
     top:10px;
     position: relative;
 }
+
 .myhead2{
     
 }
@@ -527,31 +650,39 @@
 .myhead2_boxname1{
     width: 99%; 
     border-right: 1px solid black;
+    border-bottom: 1px solid black;
 }
 .myhead2_boxname2{
+    border-bottom: 1px solid black;
     width: 99%; 
 }
 .mybody2_box1{
     width: 40%; 
     float: left; 
     height: 35px; 
-    border-top: 1px solid black;
+    border-bottom: 1px solid black;
 }
 .mybody2_box2{
     width: 20%; 
     float: left; 
     height: 35px;
-    border-top: 1px solid black;
+    border-bottom: 1px solid black;
 }
 .mybody2_inbox1{
     border-right: 1px solid black; 
     height: 100%; 
-    padding: 6px 0;
+}
+.mybody2_inbox1 span{
+    top:7px;
+    position: relative;
 }
 .mybody2_inbox2{
-    padding: 6px 0;
-}
 
+}
+.mybody2_inbox2 input{
+    position: relative;
+    top: 10px;
+}
 .SalesTrend{
     width: 100%;
     background-color: white;
@@ -572,5 +703,58 @@
     width: 100%;
     background-color: white;
     padding: 10px 0px 10px 0px;
+}
+.trendbut{
+    width: 300px;
+    border-radius: 3em;
+}
+
+
+.thepopup{
+    width: 390px; 
+    height: 430px; 
+}
+.popuphead{
+    width:370px; 
+    height: 350px;
+    left: 10px;
+    top: 10px;
+    border: 1px solid black;
+    position: relative;
+}
+.popupbut{
+    width:370px; 
+    height: 50px;
+    left: 10px;
+    top: 20px;
+    position: relative; 
+}
+.popupinhead{
+    float: left; 
+    width: 25%;
+    border-bottom: 1px solid black;
+}
+.popupinheadin{
+    border-right: 1px solid black;
+}
+.popupbody{
+    float: left; 
+    width: 25%;
+    border-bottom: 1px solid black;
+}
+.popupinbody1{
+    border-right: 1px solid black; 
+    height: 35px;
+}
+.popupinbody1 span{
+    top:10px;
+    position: relative;
+}
+.popupinbody2{
+    height: 35px;
+}
+.popupinbody2 span{
+    top:7px;
+    position: relative;
 }
 </style>

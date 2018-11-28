@@ -2,43 +2,43 @@
     <div class="pageall">
         <div>
             <div class="handle">
-                <mt-button type="default" @click="addbutn">增加客户</mt-button>
+                <mt-button type="primary" @click="addbutn">{{ $t("clientList.increasecustomer") }}</mt-button>
             </div>
             <div class="handle">
-                <mt-button type="default" @click="editbutn">编辑客户</mt-button>
+                <mt-button type="primary" @click="editbutn">{{ $t("clientList.editclient") }}</mt-button>
             </div>
             <div class="Management">
-                <div v-for= "(infor, index) in infors" :key="index">
-                    <div class="mybody1">
-                        <div class="mybody1_box1">
-                            {{infor.customer_name}}
+                <div v-for= "(infor, index) in infors" :key="index" @click="showcli(index, infor)">
+                    <div class="staffliatbody">
+                        <div class="staffliatbody_box1" v-bind:class="{ active: index == clind}">
+                            <span>{{infor.customer_name}}</span>
                         </div>
                     </div>
-                    <div class="mybody1">
-                        <div class="mybody1_box1">
-                            {{infor.company_name}}
+                    <div class="staffliatbody">
+                        <div class="staffliatbody_box1" v-bind:class="{ active: index == clind}">
+                            <span>{{infor.company_name}}</span>
                         </div>
                     </div>
-                    <div class="mybody1">
-                        <div class="mybody1_box1">
-                            {{infor.customer_tele}}
+                    <div class="staffliatbody">
+                        <div class="staffliatbody_box1" v-bind:class="{ active: index == clind}">
+                            <span>{{infor.customer_tele}}</span>
                          </div>
                      </div>
-                     <div class="mybody1">
-                            <div class="mybody1_box2">
-                                <mt-button class="mybody1_box2_mt-button" type="default">删除</mt-button>
-                            </div>
+                     <div class="staffliatbody">
+                        <div class="staffliatbody_box2" v-bind:class="{ active: index == clind}">
+                            <mt-button class="mybody1_box2_mt-button" type="default" @click="deletecli(index)">{{ $t("clientList.deleteL") }}</mt-button>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="Managementbut">
-                <mt-button type="default" @click="myreturn">返回</mt-button>    
+                <mt-button class="clientListreturn" type="primary" @click="returnme">{{ $t("clientList.thereturn") }}</mt-button>    
             </div>
         </div>
         <mt-popup v-model="addasideView" position="relative" popup-transition="popup-fade">
             <div class="AddAndEdit">
                 <div class="AddAndEditHead">
-                    <h1>增加客户</h1>
+                    <h1>{{ $t("clientList.increasecustomer") }}</h1>
                 </div>
                 <div>
                     <mt-field label="客户姓名" placeholder="请输入客户姓名" v-model="username"></mt-field>
@@ -58,12 +58,12 @@
         <mt-popup v-model="editasideView" position="relative" popup-transition="popup-fade">
             <div class="AddAndEdit">
                 <div class="AddAndEditHead">
-                    <h1>编辑客户</h1>
+                    <h1>{{ $t("clientList.editclient") }}</h1>
                 </div>
                 <div>
-                    <mt-field label="客户姓名" placeholder="请输入客户姓名" v-model="username"></mt-field>
-                    <mt-field label="公司名字" placeholder="请输入公司名字" v-model="username"></mt-field>
-                    <mt-field label="客户电话" placeholder="请输入客户电话" v-model="username"></mt-field>
+                    <mt-field label="客户姓名" v-model="custname"></mt-field>
+                    <mt-field label="公司名字" v-model="compname"></mt-field>
+                    <mt-field label="客户电话" v-model="custtele"></mt-field>
                 </div>
                 <div class="AddAndEditButton">
                     <div class="handle">
@@ -86,6 +86,10 @@
             return {
                 addasideView: false,
                 editasideView: false,
+                clind: -1,
+                cusname: '',
+                comname: '',
+                custele: '',
                 infors:[{
                     customer_name: 'Vittorio',
                     company_name: 'Vittorio',
@@ -142,7 +146,14 @@
                 this.addasideView = true;
             },
             editbutn: function(){
-                this.editasideView = true;
+                if(this.clind == -1){
+                    alert("请选择要编辑的客户");
+                }else{
+                    this.editasideView = true;
+                    this.custname = this.cusname;
+                    this.compname = this.comname;
+                    this.custtele = this.custele;
+                }
             },
             confirm: function(){
                 this.addasideView = false;
@@ -152,9 +163,18 @@
                 this.addasideView = false;
                 this.editasideView = false;
             },
-            myreturn: function(){
+            returnme: function(){
                 this.$router.push('/Me');
-            }
+            },
+            showcli: function(index, infor){
+                this.clind = index;
+                this.cusname = infor.customer_name;
+                this.comname = infor.company_name;
+                this.custele = infor.customer_tele;
+            },
+            deletecli: function(index){
+                this.infors.splice(index,1);
+            },
         },
         created() {
 
@@ -206,24 +226,35 @@
 .myhead1_box{
     border-right: 1px solid black;
 }
-.mybody1{
+.staffliatbody{
     float: left; 
     width:25%; 
-    border-top: 1px solid black; 
+    border-bottom: 1px solid black; 
     height: 35px;
 }
-.mybody1_box1{
+.staffliatbody_box1{
     border-right: 1px solid black; 
     height: 100%; 
-    padding-top: 8px;
 }
-.mybody1_box2{
+.staffliatbody_box1 span{
+    top: 10px;
+    position: relative;
+}
+.staffliatbody_box2{
     padding-top: 6px;
+    height: 29px;
 }
 .mybody1_box2_mt-button{
     height: 25px;
 }
 .Managementbut{
     padding-top: 10px;
+}
+.clientListreturn{
+    width: 300px;
+    border-radius: 3em;
+}
+.active {
+    background: #87CEEB !important;
 }
 </style>
