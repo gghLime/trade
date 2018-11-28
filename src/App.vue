@@ -118,6 +118,7 @@
         </div>
 
         <div class="shop_area">
+          <van-button size="small" @click="del">清空购物车</van-button>
           <div v-for="(item, index) in buy_list_data" :key="index">
             <van-panel>
               <div class="shopping_list">
@@ -182,6 +183,7 @@
   /* eslint-disable */
   import mode from '@/assets/mode.jpg'
   import del_img from '@/assets/close.png'
+  import { Toast } from 'vant';
 
     export default {
         components: {
@@ -268,14 +270,17 @@
           add: function() {
             localStorage.setItem('car',JSON.stringify(this.buy_list_data));
           },
+          // 清空购物车
           del: function() {
             // var data = new Array();
             // var data = JSON.parse(localStorage.getItem('car'));
             // data = data.concat(data);
             // console.log(data);
             // localStorage.setItem('car',JSON.stringify(data));
-            //localStorage.removeItem('car');
-            console.log(JSON.parse(localStorage.getItem('car')));
+            localStorage.removeItem('car');
+            this.buy_list_data = [];
+            Toast('清空购物车成功');
+            //console.log(JSON.parse(localStorage.getItem('car')));
           }
         },
         created() {

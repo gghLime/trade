@@ -344,7 +344,7 @@
         },
         data: function () {
             return {
-                selected: "4",                              // 分页控制
+                selected: "1",                              // 分页控制
                 isPulled:false,                            // 下来按钮状态控制
                 tail_in_visible:false,                     // 是否显示尾箱录入画面
                 saleslip_visible:false,                    // 是否显示销售单
